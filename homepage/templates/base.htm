@@ -1,0 +1,62 @@
+## this is the skeleton of all pages on in this app - it defines the basic html tags
+<!DOCTYPE html>
+
+<html>
+    <meta charset="UTF-8">
+    <head>
+        <title>FOMO</title>
+
+        ## add any site-wide scripts or CSS here; for example, jquery:
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="${ STATIC_URL }homepage/media/bootstrap3/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="${ STATIC_URL }homepage/media/bootstrap3/css/bootstrap.min.css"></link>
+        <link rel="stylesheet" href="${ STATIC_URL }homepage/media/bootstrap3/css/bootstrap-theme.min.css"></link>
+
+        ## render the static file links with the same name as this template
+        <script src="/django_mako_plus/dmp-common.min.js"></script>
+        ${ django_mako_plus.links(self) }
+
+        ## add favicon
+        <link rel="icon" href="${ STATIC_URL }homepage/media/favicon.ico"></link>
+
+        <%block name="head_extra"></%block>
+    </head>
+    <body>
+      <div id="maintenance"><%block name="maintenance"></%block></div>
+
+      <header id="header_navbar">
+        <nav id="header_navbar" class="navbar navbar-expand-lg navbar-inverse bg-dark">
+          <div class="navbar-brand ml-2">
+            <a href="index"><img class="navbar-brand" src="${ STATIC_URL }homepage/media/logo.png"/></a>
+          </div>
+          <%block name="menu"></%block>
+          <ul id="navbar_login" class="nav navbar-nav navbar-right">
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Login<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a id="navbar_login_dropdown" href="#">Account</a></li>
+                <li><a id="navbar_login_dropdown" href="#">Logout</a></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </header>
+
+        <body>
+          <div id="top"><%block name="top"></%block></div>
+          <div id="content-middle" class="row">
+            <div id="left" class="col-lg-2"><%block name="left"></%block></div>
+            <div id="content" class="col-lg-8"><%block name="content"></%block></div>
+            <div id="right" class="col-lg-2"><%block name="right"></%block></div>
+          </div>
+          <div id="bottom"><%block name="bottom"></%block></div>
+        </body>
+
+          <footer>
+            <hr />
+            <%block name="footer">
+                <%! from datetime import datetime %>
+                &copy; Copyright FOMO ${ datetime.now().year }. All rights reserved.
+            </%block>
+          </footer>
+    </body>
+</html>

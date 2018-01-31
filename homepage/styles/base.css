@@ -3,12 +3,6 @@ html, body {
     padding: 0;
 }
 
-header {
-    /* padding: 15px 20px;
-    border-top: 4px solid #606060;
-    border-bottom: 4px solid #606060; */
-}
-
 header h1 {
     margin: 0;
     padding: 0;
@@ -35,25 +29,27 @@ main {
   float: left;
 }
 #header_navbar .navbar-brand img {
-  /* height: 46px; */
+  padding: 0;
 }
 #header_navbar li.active > a {
-  color: white;
+  color: black;
   border-radius: 6px;
-  background-color: #dde1d6;
+  background-color: #44BF9E;
 }
 #header_navbar li.active > a:hover {
-  color: gray;
-  background-color: #e7eae2;
+  color: black;
+  background-color: #44BF9E;
 }
 #header_navbar li > a {
+  font-family: 'Fredoka One', cursive;
   text-transform: none;
   color: white;
-  font-weight: bold;
-  font-size: 15px;
+  /* font-weight: bold; */
+  font-size: 13px;
+  padding: 7px;
 }
 #header_navbar li > a:hover {
-  color: #e7eae2;
+  color: #44BF9E;
 }
 
 #navbar_login {
@@ -113,4 +109,10 @@ main {
 footer {
   padding: 8px;
   text-align: center;
+}
+
+#btn-teal {
+  color: black !important;
+  background-color: #44BF9E !important;
+  border-color: #44BF9E !important;
 }

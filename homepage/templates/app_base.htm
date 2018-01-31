@@ -1,7 +1,7 @@
 <%inherit file="base.htm" />
 
 <%block name="menu">
-        <ul class="nav navbar-nav mr-auto">
+        <ul class="navbar-nav mr-auto">
           <li class="nav-item ${  'active' if request.dmp_router_page == 'index' else '' }"><a href="index">Home</a></li>
           <li class="nav-item ${  'active' if request.dmp_router_page == 'about' else '' }"><a href="about">About</a></li>
           <li class="nav-item ${  'active' if request.dmp_router_page == 'contact' else '' }"><a href="contact">Contact</a></li>

@@ -21,7 +21,7 @@ main {
 }
 
 #header_navbar {
-  background-color: black !important;
+  background-color: black;
   border: none;
   margin-bottom: auto;
 }
@@ -112,7 +112,11 @@ footer {
 }
 
 #btn-teal {
-  color: black !important;
-  background-color: #44BF9E !important;
-  border-color: #44BF9E !important;
+  color: black;
+  background-color: #44BF9E;
+  border-color: #44BF9E;
+}
+
+#navtog {
+  color: white;
 }

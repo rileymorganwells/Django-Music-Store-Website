@@ -1,39 +1,77 @@
 -   model: contenttypes.contenttype
     pk: 101
-    fields: {
-      app_label: account,
-      model: user}
+    fields:
+      app_label: account
+      model: user2
 -   model: auth.permission
     pk: 101
-    fields: {
-      name: Accept a returned product,
-      content_type: 101,
-      codename: return_product}
+    fields:
+      name: Accept a returned product
+      content_type: 101
+      codename: return_product
 -   model: auth.permission
-    pk: 2
-    fields: {
-      name: Can change log entry,
-      content_type: 101,
-      codename: change_logentry}
+    pk: 102
+    fields:
+      name: Can change log entry
+      content_type: 101
+      codename: change_logentry
 -   model: auth.permission
-    pk: 3
-    fields: {
-      name: Can delete log entry,
-      content_type: 101,
-      codename: delete_logentry}
+    pk: 103
+    fields:
+      name: Can delete log entry
+      content_type: 101
+      codename: delete_logentry
 -   model: auth.group
-    pk: 1
+    pk: 101
     fields:
         name: Salespeople
-        permissions: [16, 1, 7, 4]
+        permissions: [103]
 -   model: account.user
-    pk: 1
+    pk: 101
     fields:
-        password: pbkdf2_sha256$100000$YFErwU1gAyrs$audjSvbpCQ7KOBQNzpMNfDd6TXfB5EwuOh/gIE4Bkuw=
+        password: password
         last_login: 2018-01-29 20:43:48.007411+00:00
         is_superuser: true
         email: homer@simpsons.com
         first_name: Homer
+        last_name: Simpson
+        is_staff: true
+        is_active: true
+        date_joined: 2018-01-29 20:34:26.739875+00:00
+        birthdate: null
+        address: 742 Evergreen Terrace
+        city: Springfield
+        state: OR
+        zip: '12312'
+        groups: []
+        user_permissions: []
+-   model: account.user
+    pk: 102
+    fields:
+        password: password
+        last_login: 2018-01-29 20:43:48.007411+00:00
+        is_superuser: true
+        email: bart@simpsons.com
+        first_name: Bart
+        last_name: Simpson
+        is_staff: true
+        is_active: true
+        date_joined: 2018-01-29 20:34:26.739875+00:00
+        birthdate: null
+        address: 742 Evergreen Terrace
+        city: Springfield
+        state: OR
+        zip: '12312'
+        groups: []
+        user_permissions: []
+-   model: account.user
+    pk: 103
+    fields:
+        password: password
+        last_login: 2018-01-29 20:43:48.007411+00:00
+        is_superuser: true
+        email: homermarge@simpsons.com
+        first_name: Marge
         last_name: Simpson
         is_staff: true
         is_active: true

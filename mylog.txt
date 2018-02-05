@@ -1,0 +1,84 @@
+commit 7ddd2766c154764a1074d9ddb10dc26187454354
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Thu Feb 1 14:24:53 2018 -0700
+
+    finished unit testing - added user permission and d group tests
+
+commit 04f714368c97d5c90a83a050948a34c5f0e9a6b6
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Wed Jan 31 15:29:31 2018 -0700
+
+    updated test.py and created fixtures file
+
+commit a31974c090b523e24c11916dc1c2efa6a9077031
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Wed Jan 31 14:09:53 2018 -0700
+
+    More css updates to make each page look more uniform and pretty
+
+commit 8f33a62fbe7d9f1f29c9e68619da98db31924387
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Wed Jan 31 14:01:34 2018 -0700
+
+    made LOTS of design changes to get Bootstrap 4 to work
+
+commit 6f4961cf9d170239717647ffce378d8127f9e491
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Tue Jan 30 23:08:29 2018 -0700
+
+    upgraded to Bstrap 4 and made lots of tweaks to CSS and HTML to try to fix things and get my website back to normal. Aparently there are quite a few changes to Bootrstrap 4
+
+commit a7629318bf10b4929447f56d14497dcf8007219c
+Merge: e0a2539 8a1ee50
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Tue Jan 30 21:55:42 2018 -0700
+
+    Merge branch 'unittest'
+
+commit e0a25390f26d7cb01756ac15fe1a672ef042d855
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Tue Jan 30 21:54:53 2018 -0700
+
+    accidentally changing master...
+
+commit bdf396cd3adce8d4cc64e2e6795010b4a15bea69
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Tue Jan 30 15:33:33 2018 -0700
+
+    get_purchases added to models.py andsetup added to test
+
+commit 8a1ee5022c3740df1860f1bd734fd3da45fe2b8c
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Tue Jan 30 13:34:11 2018 -0700
+
+    added two tests to tests.py
+
+commit 5071f3131709c928d78e4d3c3d16800d9cb2e25e
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Tue Jan 30 12:39:29 2018 -0700
+
+    added get_purchases method to usermodel, closing usermodel branch
+
+commit 3b23513113cced1f393f3c8c5748ca0ced64c1ff
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Mon Jan 29 13:47:23 2018 -0700
+
+    Added user model
+
+commit 12ef23d799b18654693d351b6db2a5890eeba8f2
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Sun Jan 28 18:41:01 2018 -0700
+
+    messing around with the Question model
+
+commit e686f510456032522aeca5ea2ba89200892dbe8c
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Sun Jan 28 17:25:45 2018 -0700
+
+    testing git
+
+commit 9442004d7d168c36c929c2831f41cc49d2b9cd02
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Sun Jan 28 17:17:49 2018 -0700
+
+    updated base.htm (added space only in html) to test git

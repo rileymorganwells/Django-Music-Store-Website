@@ -2,12 +2,6 @@
 
 <%block name="content">
 <div id="formtest_content">
-  <form action="/account/formtest/" method="POST">
-    ${ csrf_input }
-    <div id="formtest_spacing">
-    ${ form.as_p() }
-    </div>
-    <input id="btn-teal" class="btn" type="submit" value="Submit"/>
-  </form>
+  ${ form }
 </div>
 </%block>

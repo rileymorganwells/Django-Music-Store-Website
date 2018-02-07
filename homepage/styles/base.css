@@ -32,7 +32,7 @@ main {
   padding: 0;
 }
 #header_navbar li.active > a {
-  color: black;
+  color: white;
   border-radius: 6px;
   background-color: #44BF9E;
 }
@@ -112,7 +112,7 @@ footer {
 }
 
 #btn-teal {
-  color: black;
+  color: white;
   background-color: #44BF9E;
   border-color: #44BF9E;
   font-weight: bold;

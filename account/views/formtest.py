@@ -42,7 +42,7 @@ class TestForm(Formless):
         age = self.cleaned_data.get('age')
         if age < 18:
             # show an error message: no soup for you
-            print('>>>>>> LESS THAN 18')
+            raise forms.ValidationError('You are not 18, no soup for you')
         return age
 
     def clean(self):
@@ -52,5 +52,5 @@ class TestForm(Formless):
         pw2 = self.cleaned_data.get('password2')
         if pw1 != pw2:
             # yell at the user
-            print('>>>>>> Passwords don\'t match!')
+            raise forms.ValidationError('Passwords do not match!')
         return self.cleaned_data

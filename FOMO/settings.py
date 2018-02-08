@@ -48,6 +48,8 @@ INSTALLED_APPS = [
 #AUTH_USER_MODEL = 'cuser.CUser'
 AUTH_USER_MODEL = 'account.User'
 
+LOGIN_URL = '/account/login/'
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

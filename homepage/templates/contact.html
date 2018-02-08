@@ -1,15 +1,7 @@
 <%inherit file="app_base.htm" />
 
-<%block name="top"></%block>
-<%block name="left"></%block>
 <%block name="content">
-  <div id="contact_content">
-    <form action="/contact" method="POST">
-      ${ csrf_input }
-      First name: <input id="contact_spacing" type="text" name="fname"><br>
-      Last name: <input id="contact_spacing" type="text" name="lname"><br>
-      <input id="btn-teal" class="btn" type="submit" value="Submit">
-    </form>
-  </div>
+<div id="contact_content">
+  ${ form }
+</div>
 </%block>
-<%block name="right"></%block>

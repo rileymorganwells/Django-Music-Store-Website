@@ -1,6 +1,6 @@
 from django.db import models
 
-class Category():
+class Product():
     name = models.TextField(blank=True, null=True)
     description = models.TextField(blank=True, null=True)
     createdate = models.DateField(blank=True, null=True)
@@ -17,7 +17,7 @@ class BulkProduct():
     reordertrigger = models.IntegerField(blank=True, null=True)
     reorderquantity = models.IntegerField(blank=True, null=True)
 
-class IndivProduct():
+class UniqueProduct():
     name = models.TextField(blank=True, null=True)
     description = models.TextField(blank=True, null=True)
     category = models.TextField(blank=True, null=True)

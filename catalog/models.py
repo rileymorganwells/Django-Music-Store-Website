@@ -1,10 +1,21 @@
 from django.db import models
 
-class Product():
+class Category():
     name = models.TextField(blank=True, null=True)
     description = models.TextField(blank=True, null=True)
     createdate = models.DateTimeField(blank=True, null=True)
     lastmodified = models.DateTimeField(blank=True, null=True)
+
+# pip install django-polymorphic
+class Product(PolymorphicModel):
+        # polymorphic_ctype: 10
+        # create_date: ! '2018-02-14 14:41:28.900082'
+        # last_modified: ! '2018-02-14 14:41:28.900095'
+        # status: A
+        # name: Fight Song
+        # description: By Rachel Platten and Dave Bassett
+        # category: 1
+        # price: '5.00'
 
 class BulkProduct():
     name = models.TextField(blank=True, null=True)

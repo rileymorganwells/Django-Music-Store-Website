@@ -1,57 +1,56 @@
 from django.db import models
+from polymorphic.models import PolymorphicModel
 
-class Category():
+class Category(models.Model):
     name = models.TextField(blank=True, null=True)
     description = models.TextField(blank=True, null=True)
-    createdate = models.DateTimeField(blank=True, null=True)
-    lastmodified = models.DateTimeField(blank=True, null=True)
+    create_date = models.DateTimeField(blank=True, null=True)
+    last_modified = models.DateTimeField(blank=True, null=True)
 
 # pip install django-polymorphic
-# class Product(PolymorphicModel):
-#         # polymorphic_ctype: 10
-#         # create_date: ! '2018-02-14 14:41:28.900082'
-#         # last_modified: ! '2018-02-14 14:41:28.900095'
-#         # status: A
-#         # name: Fight Song
-#         # description: By Rachel Platten and Dave Bassett
-#         # category: 1
-#         # price: '5.00'
+class Product(PolymorphicModel):
+    '''Bulk, individual, or rental product'''
+    TYPE_CHOICES = (
+        ('BulkProduct', 'Bulk Product'),
+        ('IndividualProduct', 'Individual Project'),
+        ('RentalProduct', 'Rental Product'),
+    )
+    STATUS_CHOICES = (
+        ('A', 'Active'),
+        ('I', 'Inactive'),
+    )
+    create_date = models.DateTimeField(auto_now_add=True)
+    last_modified = models.DateTimeField(auto_now=True)
+    status = models.TextField(choices=STATUS_CHOICES, default='A')
+    name = models.TextField()
+    description = models.TextField()
+    category = models.ForeignKey('Category', on_delete=models.CASCADE)
+    price = models.DecimalField(max_digits=7, decimal_places=2)
 
-class BulkProduct():
+class BulkProduct(Product):
     '''Bulk Product'''
     TITLE = 'Bulk'
-    name = models.TextField(blank=True, null=True)
-    description = models.TextField(blank=True, null=True)
-    category = models.TextField(blank=True, null=True)
-    price = models.FloatField(blank=True, null=True)
-    createdate = models.DateTimeField(blank=True, null=True)
-    lastmodified = models.DateTimeField(blank=True, null=True)
-    quantity = models.IntegerField(blank=True, null=True)
-    reordertrigger = models.IntegerField(blank=True, null=True)
-    reorderquantity = models.IntegerField(blank=True, null=True)
-        # quantity: 20
-        # reorder_trigger: 10
-        # reorder_quantity: 10
+    quantity = models.IntegerField()
+    reorder_trigger = models.IntegerField()
+    reorder_quantity = models.IntegerField()
 
-class IndividualProduct():
-    name = models.TextField(blank=True, null=True)
-    description = models.TextField(blank=True, null=True)
-    category = models.TextField(blank=True, null=True)
-    price = models.FloatField(blank=True, null=True)
-    createdate = models.DateTimeField(blank=True, null=True)
-    lastmodified = models.DateTimeField(blank=True, null=True)
-    itemID = models.IntegerField(blank=True, null=True)
-        # pid: 12345X6
+    def get_quantity(self):
+        return self.quantity
 
-class RentalProduct():
-    name = models.TextField(blank=True, null=True)
-    description = models.TextField(blank=True, null=True)
-    category = models.TextField(blank=True, null=True)
-    price = models.FloatField(blank=True, null=True)
-    createdate = models.DateTimeField(blank=True, null=True)
-    lastmodified = models.DateTimeField(blank=True, null=True)
-    itemID = models.IntegerField(blank=True, null=True)
-    retiredate = models.DateTimeField(blank=True, null=True)
-        # pid: MACK12A
-        # max_rental_days: 2
-        # retire_date: null
+class IndividualProduct(Product):
+    '''A product tracked individually'''
+    TITLE = 'Individual'
+    pid = models.TextField()
+
+    def get_quantity(self):
+        return 1
+
+class RentalProduct(Product):
+    '''Products to be rented'''
+    TITLE = 'Rental'
+    pid = models.TextField()
+    max_rental_days = models.IntegerField(default=0)
+    retire_date = models.DateTimeField(null=True, blank=True)
+
+    def get_quantity(self):
+        return 1

@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'account',
     'catalog',
     'manager',
+    'polymorphic',
 ]
 
 #AUTH_USER_MODEL = 'cuser.CUser'

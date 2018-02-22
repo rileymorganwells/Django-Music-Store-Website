@@ -7,12 +7,15 @@ class Category(models.Model):
     create_date = models.DateTimeField(blank=True, null=True)
     last_modified = models.DateTimeField(blank=True, null=True)
 
+    def __str__(self):
+        return self.name
+
 # pip install django-polymorphic
 class Product(PolymorphicModel):
     '''Bulk, individual, or rental product'''
     TYPE_CHOICES = (
         ('BulkProduct', 'Bulk Product'),
-        ('IndividualProduct', 'Individual Project'),
+        ('IndividualProduct', 'Individual Product'),
         ('RentalProduct', 'Rental Product'),
     )
     STATUS_CHOICES = (
@@ -26,6 +29,9 @@ class Product(PolymorphicModel):
     description = models.TextField()
     category = models.ForeignKey('Category', on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=7, decimal_places=2)
+
+    def get_quantity(self):
+        return self.quantity
 
 class BulkProduct(Product):
     '''Bulk Product'''

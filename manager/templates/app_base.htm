@@ -3,6 +3,6 @@
 <%block name="menu">
 <ul class="navbar-nav mr-auto">
   <li class="nav-item ${  'active' if request.dmp_router_page == 'products' else '' }"><a href="/manager/products/">Product List</a></li>
-  <li class="nav-item ${  'active' if request.dmp_router_page == 'createproduct' else '' }"><a href="/manager/createproduct/">Create Product</a></li>
+  <li class="nav-item ${  'active' if request.dmp_router_page == 'product.create' else '' }"><a href="/manager/product.create/">Create Product</a></li>
 </ul>
 </%block>

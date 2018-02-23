@@ -22,17 +22,17 @@ def create(request):
 class CreateProduct(Formless):
 
     def init(self):
+        self.fields['type'] = forms.ChoiceField(label='Product Type', choices=[ ['1', 'Individual'], ['2', 'Bulk'], ['3', 'Rental']])
         self.fields['name'] = forms.CharField(label='Product Name')
         self.fields['description'] = forms.CharField(label='Product Description')
         self.fields['category'] = forms.ModelChoiceField(queryset=cmod.Category.objects.all(), label='Category')
-        self.fields['type'] = forms.ChoiceField(label='Type')
-        self.fields['price'] = forms.CharField(max_length=32, widget=forms.PasswordInput, label='Price')
-        self.fields['quantity'] = forms.CharField(max_length=32, widget=forms.PasswordInput, label='Quantity')
-        self.fields['reorder_trigger'] = forms.CharField(max_length=32, widget=forms.PasswordInput, label='Reorder Trigger')
-        self.fields['reorder_quantity'] = forms.CharField(max_length=32, widget=forms.PasswordInput, label='Reorder Quantity')
-        self.fields['pid'] = forms.CharField(label='pid')
-        self.fields['max_rental_days'] = forms.IntegerField(label='Max Rental Days')
-        self.fields['retire_date'] = forms.DateTimeField(label='Retire Date')
+        self.fields['price'] = forms.DecimalField(label='Price')
+        self.fields['quantity'] = forms.IntegerField(label='Quantity', required=False)
+        self.fields['reorder_trigger'] = forms.CharField(max_length=32, widget=forms.PasswordInput, label='Reorder Trigger', required=False)
+        self.fields['reorder_quantity'] = forms.CharField(max_length=32, widget=forms.PasswordInput, label='Reorder Quantity', required=False)
+        self.fields['pid'] = forms.CharField(label='pid', required=False)
+        self.fields['max_rental_days'] = forms.IntegerField(label='Max Rental Days', required=False)
+        self.fields['retire_date'] = forms.DateTimeField(label='Retire Date', required=False)
         self.fields['create_date'] = forms.DateTimeField(label='Create Date')
         self.fields['last_modified'] = forms.DateTimeField(label='Last Modified')
 
@@ -59,17 +59,17 @@ def edit(request, product:cmod.Product):
 class EditProduct(Formless):
 
     def init(self):
+        self.fields['type'] = forms.ChoiceField(label='Product Type', choices=[ ['1', 'Individual'], ['2', 'Bulk'], ['3', 'Rental']])
         self.fields['name'] = forms.CharField(label='Product Name')
         self.fields['description'] = forms.CharField(label='Product Description')
         self.fields['category'] = forms.ModelChoiceField(queryset=cmod.Category.objects.all(), label='Category')
-        self.fields['type'] = forms.ChoiceField(label='Type')
         self.fields['price'] = forms.CharField(max_length=32, widget=forms.PasswordInput, label='Price')
-        self.fields['quantity'] = forms.CharField(max_length=32, widget=forms.PasswordInput, label='Quantity')
-        self.fields['reorder_trigger'] = forms.CharField(max_length=32, widget=forms.PasswordInput, label='Reorder Trigger')
-        self.fields['reorder_quantity'] = forms.CharField(max_length=32, widget=forms.PasswordInput, label='Reorder Quantity')
-        self.fields['pid'] = forms.CharField(label='pid')
-        self.fields['max_rental_days'] = forms.IntegerField(label='Max Rental Days')
-        self.fields['retire_date'] = forms.DateTimeField(label='Retire Date')
+        self.fields['quantity'] = forms.CharField(max_length=32, widget=forms.PasswordInput, label='Quantity', required=False)
+        self.fields['reorder_trigger'] = forms.CharField(max_length=32, widget=forms.PasswordInput, label='Reorder Trigger', required=False)
+        self.fields['reorder_quantity'] = forms.CharField(max_length=32, widget=forms.PasswordInput, label='Reorder Quantity', required=False)
+        self.fields['pid'] = forms.CharField(label='pid', required=False)
+        self.fields['max_rental_days'] = forms.IntegerField(label='Max Rental Days', required=False)
+        self.fields['retire_date'] = forms.DateTimeField(label='Retire Date', required=False)
         self.fields['create_date'] = forms.DateTimeField(label='Create Date')
         self.fields['last_modified'] = forms.DateTimeField(label='Last Modified')
 

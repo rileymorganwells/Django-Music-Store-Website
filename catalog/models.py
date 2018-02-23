@@ -55,7 +55,7 @@ class RentalProduct(Product):
     '''Products to be rented'''
     TITLE = 'Rental Product'
     pid = models.TextField()
-    max_rental_days = models.IntegerField(default=0)
+    max_rental_days = models.IntegerField(null=True, default=0)
     retire_date = models.DateTimeField(null=True, blank=True)
 
     def get_quantity(self):

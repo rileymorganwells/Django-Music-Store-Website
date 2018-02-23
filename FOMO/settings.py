@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'catalog',
     'manager',
     'polymorphic',
+    'bootstrap3_datetime',
 ]
 
 #AUTH_USER_MODEL = 'cuser.CUser'

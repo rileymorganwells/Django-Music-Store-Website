@@ -1,0 +1,20 @@
+#form_content {
+  background-color: #EEEEEE;
+  margin-top: 0;
+  padding: 20px;
+}
+
+#form_spacing {
+  align-items: center;
+  margin: 10px;
+}
+
+div#content.col-lg-8 {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+h2 {
+  margin-top: 0;
+  padding-left: 5px;
+}

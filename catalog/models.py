@@ -14,9 +14,9 @@ class Category(models.Model):
 class Product(PolymorphicModel):
     '''Bulk, individual, or rental product'''
     TYPE_CHOICES = (
-        ('BulkProduct', 'Bulk Product'),
-        ('IndividualProduct', 'Individual Product'),
-        ('RentalProduct', 'Rental Product'),
+        ('1', 'Individual Product'),
+        ('2', 'Bulk Product'),
+        ('3', 'Rental Product'),
     )
     STATUS_CHOICES = (
         ('A', 'Active'),
@@ -33,6 +33,14 @@ class Product(PolymorphicModel):
     def get_quantity(self):
         return self.quantity
 
+class IndividualProduct(Product):
+    '''A product tracked individually'''
+    TITLE = 'Individual Product'
+    pid = models.TextField()
+
+    def get_quantity(self):
+        return 1
+
 class BulkProduct(Product):
     '''Bulk Product'''
     TITLE = 'Bulk Product'
@@ -42,15 +50,7 @@ class BulkProduct(Product):
 
     def get_quantity(self):
         return self.quantity
-
-class IndividualProduct(Product):
-    '''A product tracked individually'''
-    TITLE = 'Individual Product'
-    pid = models.TextField()
-
-    def get_quantity(self):
-        return 1
-
+        
 class RentalProduct(Product):
     '''Products to be rented'''
     TITLE = 'Rental Product'

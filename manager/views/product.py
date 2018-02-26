@@ -208,6 +208,23 @@ class EditProduct(Formless):
         last_modified = self.cleaned_data.get('last_modified')
         return last_modified
 
+    # def clean(self):
+    #     if self.cleaned_data.get('ptype') == 'BulkProduct':
+    #         required = ['quantity', 'reorder_trigger', 'reorder_quantity' }
+    #     elif self.cleaned_data['ptype'] == 'IndividualProduct':
+    #         required = ['pid']
+    #     elif self.cleaned_data['ptype'] == 'RentalProduct':
+    #         required = ['pid', 'max_rental_days', 'retire_date']
+    #     for name in required:
+    #         if not self.cleaned_data.get(name):
+    #             self.add_error(name, 'This field is required')
+    #     return self.cleaned_data
+    #
+    # def commit(self):
+    #     ptype = self.cleaned_data['ptype']
+    #     if self.product is None:
+    #         self.product = getattr(cmod, ptype)()
+
     def commit(self):
         if self.cleaned_data.get('type') == '1':
             self.product = cmod.Product.objects.get(id=self.cleaned_data.get('id'))

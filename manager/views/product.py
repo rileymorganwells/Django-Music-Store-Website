@@ -123,7 +123,7 @@ def edit(request, product:cmod.Product):
     prodict['id'] = product.id
 
     form = EditProduct(request, prodict)
-    if form.is_valid():
+    if request.method == 'POST' and form.is_valid():
         form.commit()
         return HttpResponseRedirect('/manager/products/')
 
@@ -137,7 +137,6 @@ def edit(request, product:cmod.Product):
 class EditProduct(Formless):
 
     def init(self):
-        self.fields['keepform'] = forms.CharField(label='keep')
         self.fields['id'] = forms.CharField(label='id')
         self.fields['type'] = forms.ChoiceField(label='Product Type', choices=[ ['1', 'Individual Product'], ['2', 'Bulk Product'], ['3', 'Rental Product']])
         self.fields['name'] = forms.CharField(label='Product Name')

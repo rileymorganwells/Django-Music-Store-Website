@@ -9,4 +9,4 @@ def process_request(request):
         # sent to index.html:
         'utc_year': utc_year,
     }
-    return request.dmp_render('sections.html', context)
+    return request.dmp.render('sections.html', context)

@@ -13,4 +13,4 @@ def process_request(request):
         # sent to index.html and index.js:
         jscontext('utc_epoch'): utc_time.timestamp(),
     }
-    return request.dmp_render('index.html', context)
+    return request.dmp.render('index.html', context)

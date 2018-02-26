@@ -12,7 +12,7 @@ def process_request(request):
         form.commit()
         return HttpResponseRedirect('/account/index/')
 
-    return request.dmp_render('login.html', {
+    return request.dmp.render('login.html', {
         'form': form,
     })
 

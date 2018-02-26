@@ -9,4 +9,4 @@ def process_request(request):
     context = {
         'name': products,
     }
-    return request.dmp_render('products.html', context)
+    return request.dmp.render('products.html', context)

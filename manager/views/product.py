@@ -16,7 +16,7 @@ def create(request):
     context = {
         'form': form,
     }
-    return request.dmp_render('create.html', context)
+    return request.dmp.render('create.html', context)
 
 class CreateProduct(Formless):
 
@@ -132,7 +132,7 @@ def edit(request, product:cmod.Product):
         'form': form,
         'product': product,
     }
-    return request.dmp_render('edit.html', context)
+    return request.dmp.render('edit.html', context)
 
 class EditProduct(Formless):
 

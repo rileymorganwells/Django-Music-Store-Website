@@ -1,5 +1,6 @@
 from django.db import models
 from polymorphic.models import PolymorphicModel
+from django.conf import settings
 
 class Category(models.Model):
     name = models.TextField(blank=True, null=True)
@@ -33,6 +34,16 @@ class Product(PolymorphicModel):
     def get_quantity(self):
         return self.quantity
 
+    # def image_url(self):
+    #     '''Returns the first image on this product as a image_url
+    #         OR if no images, the "unavailable" image url.
+    #     '''
+    #     # always returns a url
+    #     if there is an image:
+    #       url = settings.STATIC_URL + /catalog/media/products/ + image.jpg
+    #     else:
+    #       url = default (notfound.jpg)
+
 class IndividualProduct(Product):
     '''A product tracked individually'''
     TITLE = 'Individual Product'
@@ -50,7 +61,7 @@ class BulkProduct(Product):
 
     def get_quantity(self):
         return self.quantity
-        
+
 class RentalProduct(Product):
     '''Products to be rented'''
     TITLE = 'Rental Product'
@@ -60,3 +71,6 @@ class RentalProduct(Product):
 
     def get_quantity(self):
         return 1
+
+# class ProductImage(models.Model):
+#     product = models.ForeignKey(Product, related_name="images")

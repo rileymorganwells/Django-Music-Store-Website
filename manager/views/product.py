@@ -35,57 +35,17 @@ class CreateProduct(Formless):
         self.fields['create_date'] = forms.DateTimeField(label='Create Date')
         self.fields['last_modified'] = forms.DateTimeField(label='Last Modified')
 
-    def clean_type(self):
-        type = self.cleaned_data.get('type')
-        return type
-
-    def clean_name(self):
-        name = self.cleaned_data.get('name')
-        return name
-
-    def clean_description(self):
-        description = self.cleaned_data.get('description')
-        return description
-
-    def clean_category(self):
-        category = self.cleaned_data.get('category')
-        return category
-
-    def clean_price(self):
-        price = self.cleaned_data.get('price')
-        return price
-
-    def clean_quantity(self):
-        quantity = self.cleaned_data.get('quantity')
-        return quantity
-
-    def clean_reorder_trigger(self):
-        reorder_trigger = self.cleaned_data.get('reorder_trigger')
-        return reorder_trigger
-
-    def clean_reorder_quantity(self):
-        reorder_quantity = self.cleaned_data.get('reorder_quantity')
-        return reorder_quantity
-
-    def clean_pid(self):
-        pid = self.cleaned_data.get('pid')
-        return pid
-
-    def clean_max_rental_days(self):
-        max_rental_days = self.cleaned_data.get('max_rental_days')
-        return max_rental_days
-
-    def clean_retire_date(self):
-        retire_date = self.cleaned_data.get('retire_date')
-        return retire_date
-
-    def clean_create_date(self):
-        create_date = self.cleaned_data.get('create_date')
-        return create_date
-
-    def clean_last_modified(self):
-        last_modified = self.cleaned_data.get('last_modified')
-        return last_modified
+    def clean(self):
+        if self.cleaned_data.get('type') == '1':
+            required = ['pid']
+        elif self.cleaned_data['type'] == '2':
+            required = ['quantity', 'reorder_trigger', 'reorder_quantity' ]
+        elif self.cleaned_data['type'] == '3':
+            required = ['pid', 'max_rental_days', 'retire_date']
+        for name in required:
+            if not self.cleaned_data.get(name):
+                self.add_error(name, 'This field is required')
+        return self.cleaned_data
 
     def commit(self):
         if self.cleaned_data.get('type') == '1':
@@ -122,8 +82,8 @@ def edit(request, product:cmod.Product):
     prodict['category'] = product.category.id
     prodict['id'] = product.id
 
-    form = EditProduct(request, prodict)
-    if request.method == 'POST' and form.is_valid():
+    form = EditProduct(request, initial=prodict)
+    if  form.is_valid() and request.method == 'POST':
         form.commit()
         return HttpResponseRedirect('/manager/products/')
 
@@ -152,99 +112,35 @@ class EditProduct(Formless):
         self.fields['create_date'] = forms.DateTimeField(label='Create Date')
         self.fields['last_modified'] = forms.DateTimeField(label='Last Modified')
 
-    def clean_id(self):
-        id = self.cleaned_data.get('id')
-        return id
-
-    def clean_type(self):
-        type = self.cleaned_data.get('type')
-        return type
-
-    def clean_name(self):
-        name = self.cleaned_data.get('name')
-        return name
-
-    def clean_description(self):
-        description = self.cleaned_data.get('description')
-        return description
-
-    def clean_category(self):
-        category = self.cleaned_data.get('category')
-        return category
-
-    def clean_price(self):
-        price = self.cleaned_data.get('price')
-        return price
-
-    def clean_quantity(self):
-        quantity = self.cleaned_data.get('quantity')
-        return quantity
-
-    def clean_reorder_trigger(self):
-        reorder_trigger = self.cleaned_data.get('reorder_trigger')
-        return reorder_trigger
-
-    def clean_reorder_quantity(self):
-        reorder_quantity = self.cleaned_data.get('reorder_quantity')
-        return reorder_quantity
-
-    def clean_pid(self):
-        pid = self.cleaned_data.get('pid')
-        return pid
-
-    def clean_max_rental_days(self):
-        max_rental_days = self.cleaned_data.get('max_rental_days')
-        return max_rental_days
-
-    def clean_retire_date(self):
-        retire_date = self.cleaned_data.get('retire_date')
-        return retire_date
-
-    def clean_create_date(self):
-        create_date = self.cleaned_data.get('create_date')
-        return create_date
-
-    def clean_last_modified(self):
-        last_modified = self.cleaned_data.get('last_modified')
-        return last_modified
-
-    # def clean(self):
-    #     if self.cleaned_data.get('ptype') == 'BulkProduct':
-    #         required = ['quantity', 'reorder_trigger', 'reorder_quantity' }
-    #     elif self.cleaned_data['ptype'] == 'IndividualProduct':
-    #         required = ['pid']
-    #     elif self.cleaned_data['ptype'] == 'RentalProduct':
-    #         required = ['pid', 'max_rental_days', 'retire_date']
-    #     for name in required:
-    #         if not self.cleaned_data.get(name):
-    #             self.add_error(name, 'This field is required')
-    #     return self.cleaned_data
-    #
-    # def commit(self):
-    #     ptype = self.cleaned_data['ptype']
-    #     if self.product is None:
-    #         self.product = getattr(cmod, ptype)()
+    def clean(self):
+        if self.cleaned_data.get('type') == '1':
+            required = ['pid']
+        elif self.cleaned_data['type'] == '2':
+            required = ['quantity', 'reorder_trigger', 'reorder_quantity' ]
+        elif self.cleaned_data['type'] == '3':
+            required = ['pid', 'max_rental_days', 'retire_date']
+        for name in required:
+            if not self.cleaned_data.get(name):
+                self.add_error(name, 'This field is required')
+        return self.cleaned_data
 
     def commit(self):
-        if self.cleaned_data.get('type') == '1':
-            self.product = cmod.Product.objects.get(id=self.cleaned_data.get('id'))
-            self.product.pid = self.cleaned_data.get('pid')
-        elif self.cleaned_data.get('type') == '2':
-            self.product = cmod.Product.objects.get(id=self.cleaned_data.get('id'))
-            self.product.quantity = self.cleaned_data.get('quantity')
-            self.product.reorder_trigger = self.cleaned_data.get('reorder_trigger')
-            self.product.reorder_quantity = self.cleaned_data.get('reorder_quantity')
-        else:
-            self.product = cmod.Product.objects.get(id=self.cleaned_data.get('id'))
-            self.product.pid = self.cleaned_data.get('pid')
-            self.product.max_rental_days = self.cleaned_data.get('max_rental_days')
-            self.product.retire_date = self.cleaned_data.get('retire_date')
+        type = self.cleaned_data['type']
+        self.product = cmod.Product.objects.get(id=self.cleaned_data.get('id'))
         self.product.name = self.cleaned_data.get('name')
         self.product.description = self.cleaned_data.get('description')
         self.product.category = self.cleaned_data.get('category')
         self.product.price = self.cleaned_data.get('price')
-        self.product.create_date = self.cleaned_data.get('create_date')
-        self.product.last_modified = self.cleaned_data.get('last_modified')
+        if type == '1':
+            self.product.pid = self.cleaned_data.get('pid')
+        elif type == '2':
+            self.product.quantity = self.cleaned_data.get('quantity')
+            self.product.reorder_trigger = self.cleaned_data.get('reorder_trigger')
+            self.product.reorder_quantity = self.cleaned_data.get('reorder_quantity')
+        else:
+            self.product.pid = self.cleaned_data.get('pid')
+            self.product.max_rental_days = self.cleaned_data.get('max_rental_days')
+            self.product.retire_date = self.cleaned_data.get('retire_date')
         self.product.save()
 
 @view_function

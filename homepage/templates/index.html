@@ -1,21 +1,23 @@
 <%inherit file="app_base.htm" />
 
 <%block name="maintenance"></%block>
-<%block name="top"></%block>
-<%block name="left"></%block>
-
-<%block name="content">
-      <div id="index_content">
-        <h1 class="index-header">Family Oriented Music Organization<h1>
-        <img class="center img-fluid img-circle img-responsive img-thumbnail" src="${ STATIC_URL }homepage/media/cage.gif" align="middle"></img>
-        <h4>Here at FOMO, we are all about the complete musical experience. We provide students with high quality, performance ready musical instruments to rent or to buy at a fraction of the cost of local competitors!
-          <br><br>
-        <i>"It's easy to play any musical instrument: all you have to do is touch the right key at the right time and the instrument will play itself."</i>
-        - Johann Sebastian Bach</h4>
-        <br/>
-        <a href="/index" id="btn-teal" class='btn btn-lg'><b>Shop Now!</b></a>
-      </div>
+<%block name="top">
+  <div id="top_content">
+    <div id="top_header" class='col-md-5'>
+      <h1>Family Oriented<br/> Music Organization</h1><br/>
+      <button href="/index" id="top_button" class='btn btn-lg'>Shop Now!</button>
+    </div>
+  </div>
+  <div id="index_content">
+    <div id="content">
+      <h4>Here at FOMO, we are all about the complete musical experience. We provide students with high quality, performance ready musical instruments to rent or to buy at a fraction of the cost of local competitors!
+        <br><br>
+      <i>"It's easy to play any musical instrument: all you have to do is touch the right key at the right time and the instrument will play itself."</i>
+      - Johann Sebastian Bach</h4>
+    </div>
+  </div>
 </%block>
-
+<%block name="left"></%block>
+<%block name="content"></%block>
 <%block name="right"></%block>
 <%block name="bottom"></%block>

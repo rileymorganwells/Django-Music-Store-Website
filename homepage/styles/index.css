@@ -1,19 +1,44 @@
-h4.utc-time {
-    color: #AA3333;
-}
-
 #index_content {
   text-align: center;
   display: block;
+  background-color: #EEE;
 }
 
+#top_content {
+  min-height: 400px;
+  padding: 20px;
+  font-family: 'Fredoka One', cursive;
+  background-image: url("/static/homepage/media/woodgrain.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, .5);
+}
 
+#top_header {
+  padding-top: 60px;
+  vertical-align: middle;
+  align-items: center;
+  text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
 
-/* h1.index-header {
-  text-align: center;
-} */
+#top_button {
+  color: white;
+  background-color: #44BF9E;
+  border-color: #000;
+  margin-left: 5em;
+  margin-top: 25px;
+  text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
 
-/* img.center {
-    display: block;
-    margin: 0 auto;
-} */
+#content {
+  padding-top: 20px;
+}

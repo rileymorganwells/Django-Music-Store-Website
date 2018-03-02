@@ -42,3 +42,9 @@
 #content {
   padding-top: 20px;
 }
+
+#skip_content {
+  color: white;
+  font-size: 12px;
+  float: right;
+}

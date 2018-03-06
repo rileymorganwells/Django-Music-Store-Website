@@ -2,12 +2,6 @@ h4.utc-time {
     color: #AA3333;
 }
 
-ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
 #cat-header {
   text-align: center;
 }
@@ -17,9 +11,51 @@ ul {
 }
 
 #category-list {
+  text-align: center;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
 
+#category-header {
+  text-align: center;
+  padding-top: 15px;
 }
 
 a.products {
   color: #44BF9E;
+}
+
+#product-list {
+
+}
+
+#product-list > li {
+  display: inline-block;
+  margin: 12px 18px;
+  padding: 12px;
+  border: 2px solid #CCC;
+  border-radius: 5px;
+  width: 200px;
+  vertical-align: top;
+  height: 200px;
+  position: relative;
+}
+
+#product-list > li > .price {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  background-color: #44BF9E;
+  color: white;
+  border-radius: 3px;
+  padding: 4px;
+}
+
+#product-list > li > .image {
+  padding: 15px;
+}
+
+#product-list > li > .title {
+
 }

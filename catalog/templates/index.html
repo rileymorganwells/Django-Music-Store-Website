@@ -2,8 +2,9 @@
 
 <%block name="left">
 <div>
+  <h3 id="category-header">Category</h3>
   <ul id="category-list">
-    <li id="${ 'ACTIVE' if selection is none else ''}"><a class="products" href="/catalog/index/">All Products</a></li>
+    <li id="${ 'ACTIVE' if selection is None else ''}"><a class="products" href="/catalog/index/">All Products</a></li>
     %for cat in category:
       <li id="${ 'ACTIVE' if cat == selection else ''}"><a class="products" href="/catalog/index/${ cat.id }">${ cat.name }</a></li>
     %endfor
@@ -12,16 +13,31 @@
 </%block>
 
 <%block name="content">
-  <h1 id="cat-header">${ 'Products' if selection is none else selection.name }</h1>
+  <h1 id="cat-header">${ 'Products' if selection is None else selection.name }</h1>
 
   <div id="paginator" class="text-right">
-    <a id="previous-page">Back</a>
+    <a id="previous-page"><--</a>
     Page <span id="page-number">1</span> of ${ num_pages }
-    <a id="next-page">Next</a>
+    <a id="next-page">--></a>
   </div>
 
   <div id="catalog-container">
     <div id="catalog"></div>
   </div>
-  Products products products
+
+  <div>
+    <ul id="product-list">
+      <li>
+        <div class="price">${ product.price }</div>
+        <div class="title">${ product.name }</div>
+        <div class="image"><img class="img-fluid" src="${product.image_url()}"/></div>
+      </li>
+      <li>Fudge</li>
+      <li>Yummy</li>
+      <li>Fudge</li>
+      <li>Yummy</li>
+      <li>Fudge</li>
+    </ul>
+  </div>
+
 </%block>

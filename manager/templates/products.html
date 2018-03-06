@@ -14,6 +14,7 @@
               <th class="column3">Product Type</th>
               <th class="column3">Price</th>
               <th class="column3">Quantity</th>
+              <th class="column3">Image</th>
               <th class="column3">Manage Product</th>
             </tr>
           </thead>
@@ -25,6 +26,7 @@
               <td class="column3">${ product.TITLE }</td>
               <td class="column3">$${ product.price }</td>
               <td class="column3">${ product.get_quantity() }</td>
+              <td class="column3"><img src=${ product.image_url() }/></td>
               <td class="column3">
                 <a href="/manager/product.edit/${ product.id }/" id="btn-teal" class='btn btn-sm'>Edit</a>
                 <a href="/manager/product.delete/${ product.id }/" id="btn-teal" class='btn btn-sm'>Delete</a>

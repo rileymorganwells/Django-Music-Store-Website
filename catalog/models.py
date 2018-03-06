@@ -34,15 +34,27 @@ class Product(PolymorphicModel):
     def get_quantity(self):
         return self.quantity
 
-    # def image_url(self):
-    #     '''Returns the first image on this product as a image_url
-    #         OR if no images, the "unavailable" image url.
-    #     '''
-    #     # always returns a url
-    #     if there is an image:
-    #       url = settings.STATIC_URL + /catalog/media/products/ + image.jpg
-    #     else:
-    #       url = default (notfound.jpg)
+    def image_url(self):
+        '''Returns the first image on this product as a image_url
+            OR if no images, the "unavailable" image url.
+        '''
+        # always returns a url
+        if len(self.images.all()) > 0:
+          url = settings.STATIC_URL + '/catalog/media/products/' + self.images.all()[0].filename
+        else:
+          url = settings.STATIC_URL + 'catalog/media/products/image_unavailable.gif'
+        return url
+
+    def image_urls(self):
+        if self.images.all() > 0: #list of urls
+          url = settings.STATIC_URL + '/catalog/media/products/' + self.images.all()[0].filename
+        else:  #list of just unavailable
+          url = default (image_unavailable.gif)
+        return url
+
+class ProductImage(models.Model):
+    filename = models.TextField()
+    product = models.ForeignKey(Product, related_name="images", on_delete=models.CASCADE)
 
 class IndividualProduct(Product):
     '''A product tracked individually'''

@@ -1,14 +1,14 @@
 from django.conf import settings
 from django_mako_plus import view_function, jscontext
-from datetime import datetime, timezone
+from catalog import models as cmod
+from catalog.models import Category
 
 @view_function
-def process_request(request):
-    utc_time = datetime.utcnow()
+def process_request(request, selection:cmod.Category):
+    categories = cmod.Category.objects.all()
     context = {
-        # sent to index.html:
-        'utc_time': utc_time,
-        # sent to index.html and index.js:
-        jscontext('utc_epoch'): utc_time.timestamp(),
+        'category': categories,
+        'selection': selection,
+        'num_pages': 5,
     }
-    return request.render('index.html', context)
+    return request.dmp.render('index.html', context)

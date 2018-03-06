@@ -3,7 +3,7 @@
 # set up django first
 import os, os.path
 import django
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "fomo.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "FOMO.settings")
 django.setup()
 
 # regular imports

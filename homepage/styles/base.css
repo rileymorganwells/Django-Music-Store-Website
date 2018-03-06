@@ -1,18 +1,3 @@
-html, body {
-    margin: 0;
-    padding: 0;
-}
-
-header h1 {
-    margin: 0;
-    padding: 0;
-}
-
-main {
-    margin: 0;
-    padding: 0;
-}
-
 #maintenance {
   color: #3184BB;
   background-color: #D9EDF7;
@@ -74,39 +59,20 @@ main {
   }
 }
 
-main {
-  margin-left: 0;
-}
-
-#content-middle {
-  position: relative;
-}
-
 #left {
-  position: absolute;
-  width: 240px;
-  top: 0;
+  padding: 10px;
   left: 15px;
-  bottom: 0;
+}
+
+#right {
   padding: 10px;
 }
 
 #content {
-  margin-left: 240px;
-  margin-right: 240px;
   padding: 10px;
 }
 
-#right {
-  position: absolute;
-  width: 240px;
-  top: 0;
-  right : 15px;
-  bottom: 0;
-  padding: 10px;
-}
-
-footer {
+#footer {
   padding: 8px;
   text-align: center;
 }

@@ -40,7 +40,7 @@ class Product(PolymorphicModel):
         '''
         # always returns a url
         if len(self.images.all()) > 0:
-          url = settings.STATIC_URL + '/catalog/media/products/' + self.images.all()[0].filename
+          url = settings.STATIC_URL + 'catalog/media/products/' + self.images.all()[0].filename
         else:
           url = settings.STATIC_URL + 'catalog/media/products/image_unavailable.gif'
         return url

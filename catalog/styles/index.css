@@ -1,3 +1,25 @@
 h4.utc-time {
     color: #AA3333;
 }
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#cat-header {
+  text-align: center;
+}
+
+#ACTIVE {
+  font-weight: bolder;
+}
+
+#category-list {
+
+}
+
+a.products {
+  color: #44BF9E;
+}

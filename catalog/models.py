@@ -40,17 +40,19 @@ class Product(PolymorphicModel):
         '''
         # always returns a url
         if len(self.images.all()) > 0:
-          url = settings.STATIC_URL + 'catalog/media/products/' + self.images.all()[0].filename
+          url = settings.STATIC_URL + 'catalog/media/products/' + self.images.first().filename
         else:
           url = settings.STATIC_URL + 'catalog/media/products/image_unavailable.gif'
         return url
 
     def image_urls(self):
         if self.images.all() > 0: #list of urls
-          url = settings.STATIC_URL + '/catalog/media/products/' + self.images.all()[0].filename
+          urls = []
+          for image in range(0,len(self.images.all())):
+              urls.append(settings.STATIC_URL + '/catalog/media/products/' + self.images.all()[image].filename)
         else:  #list of just unavailable
-          url = default (image_unavailable.gif)
-        return url
+          urls = [settings.STATIC_URL + 'catalog/media/products/image_unavailable.gif']
+        return urls
 
 class ProductImage(models.Model):
     filename = models.TextField()

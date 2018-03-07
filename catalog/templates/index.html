@@ -13,31 +13,15 @@
 </%block>
 
 <%block name="content">
-  <h1 id="cat-header">${ 'Products' if selection is None else selection.name }</h1>
+  <h1 id="cat-header">${ 'All Products' if selection is None else selection.name }</h1>
 
   <div id="paginator" class="text-right">
-    <a id="previous-page"><--</a>
+    <a id="previous">&#8249;</a>
     Page <span id="page-number">1</span> of ${ num_pages }
-    <a id="next-page">--></a>
+    <a id="next">&#8250;</a>
   </div>
 
   <div id="catalog-container">
-    <div id="catalog"></div>
+    <div id="products"></div>
   </div>
-
-  <div>
-    <ul id="product-list">
-      <li>
-        <div class="price">${ product.price }</div>
-        <div class="title">${ product.name }</div>
-        <div class="image"><img class="img-fluid" src="${product.image_url()}"/></div>
-      </li>
-      <li>Fudge</li>
-      <li>Yummy</li>
-      <li>Fudge</li>
-      <li>Yummy</li>
-      <li>Fudge</li>
-    </ul>
-  </div>
-
 </%block>

@@ -1,12 +1,22 @@
+$(function() {
 (function(context) {
-    // utc_epoch comes from index.py
-    console.log('Current epoch in UTC is ' + context.utc_epoch);
-    return function() {
-      //need 3 functions - page_load
-      //  -left button
-      //  -right button $("#prevpage"). click(function() {
-      //            $("#products").load("/catalog/index.products/" + context.cid + pagenum)})
-
-   }
-
+    var pnum = 1
+    console.log('Category id is ' + context.cid);
+    console.log('URL is ' + "/catalog/index.products/" + context.cid + "/" + pnum + "/");
+    $("#products").load("/catalog/index.products/" + context.cid + "/" + pnum + "/");
+    $("#next").click(function() {
+      if (pnum != context.pnum) {
+        $("#products").load("/catalog/index.products/" + context.cid + "/" + (pnum += 1) + "/");
+        $("#page-number").text(pnum);
+        console.log(pnum);
+      }
+    });
+    $("#previous").click(function() {
+      if (pnum != 1) {
+        $("#products").load("/catalog/index.products/" + context.cid + "/" + (pnum -= 1) + "/");
+        $("#page-number").text(pnum);
+        console.log(pnum);
+      }
+    });
 })(DMP_CONTEXT.get());
+})

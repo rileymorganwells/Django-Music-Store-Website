@@ -1,6 +1,19 @@
 <%inherit file="/homepage/templates/base_ajax.htm" />
 
 <%block name="content">
-</%$block>
+<div>
+  <ul id="product-list">
+    %for product in products:
+    <li>
+      <div class="price">$${ product.price }</div>
+      <div class="title"><h5>${ product.name }</h5></div>
+      <div class="image"><img class="img-fluid" src="${product.image_url()}"/></div>
+    </li>
+    %endfor
+  </ul>
+</div>
+</%block>
+
+
 ## list of items
 ## 6 items, this page starts with a ul, ends w. a ul, and has 6 lis in between

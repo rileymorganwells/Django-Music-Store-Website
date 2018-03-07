@@ -31,6 +31,5 @@ def products(request, selection:cmod.Category=None, pnum:int=1):
     products = products[(pnum-1)*6:pnum*6]
     context = {
         'products': products,
-        'pnum': pnum,
     }
     return request.dmp.render('index.products.html', context)

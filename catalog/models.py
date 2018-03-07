@@ -39,17 +39,17 @@ class Product(PolymorphicModel):
             OR if no images, the "unavailable" image url.
         '''
         # always returns a url
-        if len(self.images.all()) > 0:
+        if self.images.all():
           url = settings.STATIC_URL + 'catalog/media/products/' + self.images.first().filename
         else:
           url = settings.STATIC_URL + 'catalog/media/products/image_unavailable.gif'
         return url
 
     def image_urls(self):
-        if self.images.all() > 0: #list of urls
+        if self.images.all(): #list of urls
           urls = []
-          for image in range(0,len(self.images.all())):
-              urls.append(settings.STATIC_URL + '/catalog/media/products/' + self.images.all()[image].filename)
+          for image in self.images.all():
+              urls.append(settings.STATIC_URL + 'catalog/media/products/' + image.filename)
         else:  #list of just unavailable
           urls = [settings.STATIC_URL + 'catalog/media/products/image_unavailable.gif']
         return urls

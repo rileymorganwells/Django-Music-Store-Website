@@ -11,6 +11,15 @@ $(function() {
         console.log(pnum);
       }
     });
+    //TESTING
+    $("#new-next").click(function() {
+      if (pnum != context.pnum) {
+        $("#products").load("/catalog/index.products/" + context.cid + "/" + (pnum += 1) + "/");
+        $("#page-number").text(pnum);
+        console.log(pnum);
+      }
+    });
+    //TESTING
     $("#previous").click(function() {
       if (pnum != 1) {
         $("#products").load("/catalog/index.products/" + context.cid + "/" + (pnum -= 1) + "/");
@@ -18,5 +27,22 @@ $(function() {
         console.log(pnum);
       }
     });
+    //TESTING
+    $("#new-previous").click(function() {
+      if (pnum != 1) {
+        $("#products").load("/catalog/index.products/" + context.cid + "/" + (pnum -= 1) + "/");
+        $("#page-number").text(pnum);
+        console.log(pnum);
+      }
+    });
+    //TESTING
+    //TESTING
+    $("#change-page").click(function() {
+        $("#products").load("/catalog/index.products/" + context.cid + "/" + (pnum = 2) + "/");
+        $("#page-number").text(pnum);
+        $("#page-changer").addClass('active');
+        console.log(pnum);
+    });
+    //TESTING
 })(DMP_CONTEXT.get());
 })

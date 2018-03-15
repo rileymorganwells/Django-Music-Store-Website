@@ -1,2 +1,14 @@
 <%inherit file="/homepage/templates/base.htm" />
 <%! from catalog import models as cmod %>
+
+<%block name="left">
+<div>
+  <h3 id="category-header">Category</h3>
+  <ul id="category-list">
+    <li id="${ 'ACTIVE' if selection is None else ''}"><a class="categories" href="/catalog/index/">All Products</a></li>
+    %for cat in category:
+      <li id="${ 'ACTIVE' if cat == selection else ''}"><a class="categories" href="/catalog/index/${ cat.id }">${ cat.name }</a></li>
+    %endfor
+  </ul>
+</div>
+</%block>

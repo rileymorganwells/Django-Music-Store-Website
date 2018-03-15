@@ -1,0 +1,23 @@
+a.categories {
+  color: #44BF9E;
+}
+
+#cat-header {
+  text-align: center;
+}
+
+#ACTIVE {
+  font-weight: bolder;
+}
+
+#category-list {
+  text-align: center;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#category-header {
+  text-align: center;
+  padding-top: 15px;
+}

@@ -1,27 +1,33 @@
 <%inherit file="app_base.htm" />
 
-<%block name="left">
-<div>
-  <h3 id="category-header">Category</h3>
-  <ul id="category-list">
-    <li id="${ 'ACTIVE' if selection is None else ''}"><a class="products" href="/catalog/index/">All Products</a></li>
-    %for cat in category:
-      <li id="${ 'ACTIVE' if cat == selection else ''}"><a class="products" href="/catalog/index/${ cat.id }">${ cat.name }</a></li>
-    %endfor
-  </ul>
-</div>
-</%block>
-
 <%block name="content">
   <h1 id="cat-header">${ 'All Products' if selection is None else selection.name }</h1>
 
-  <div id="paginator" class="text-right">
-    <a id="previous">&#8249;</a>
+  <div id="old-paginator" class="text-right">
+    <a id="previous"><i class="fas fa-angle-double-left"></i></a>
     Page <span id="page-number">1</span> of ${ num_pages }
-    <a id="next">&#8250;</a>
+    <a id="next"><i class="fas fa-angle-double-right"></i></a>
   </div>
 
   <div id="catalog-container">
     <div id="products"></div>
+  </div>
+
+  <div id="paginator">
+    <nav aria-label="...">
+      <ul class="pagination justify-content-center">
+        <li class="page-item">
+          <a id="new-previous" class="page-link" href="#"><i class="fas fa-angle-double-left"></i></a>
+        </li>
+          <% page = 1 %>
+          %for x in range(0, num_pages):
+            <li id="page-changer" class="page-item"><a id="change-page" class="page-link" href="#">${ page }</a></li>
+            <% page += 1 %>
+          %endfor
+        <li class="page-item">
+          <a id="new-next" class="page-link" href="#"><i class="fas fa-angle-double-right"></i></a>
+        </li>
+      </ul>
+    </nav>
   </div>
 </%block>

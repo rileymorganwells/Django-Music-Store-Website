@@ -6,7 +6,6 @@ import math
 
 @view_function
 def process_request(request, selection:cmod.Category=None):
-    categories = cmod.Category.objects.all().order_by('name')
     products = cmod.Product.objects.all()
     if selection is not None:
         products = products.filter(category=selection)
@@ -14,7 +13,6 @@ def process_request(request, selection:cmod.Category=None):
     else:
         cid = 0
     context = {
-        'category': categories,
         'selection': selection,
         'num_pages': math.ceil(products.count()/6),
         jscontext('cid'): cid,

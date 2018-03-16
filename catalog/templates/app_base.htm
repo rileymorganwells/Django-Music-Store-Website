@@ -12,3 +12,17 @@
   </ul>
 </div>
 </%block>
+
+<%block name="right">
+<div id="recent-div">
+<p id="recent-viewed">Recently viewed</p>
+<ul id="image-thumbnails-app-base">
+%for prod in request.last_five[1:6]:
+  <li>
+    <a id="product-link" href="/catalog/detail/${ prod.id }"><img class="image-app-base img-thumbnail" alt="Extra product image" src="${ prod.image_url() }"/></a>
+    <p id="recent-prod-name">${ prod.name }</p>
+  </li>
+%endfor
+</ul>
+</div>
+</%block>

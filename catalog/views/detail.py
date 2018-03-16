@@ -6,6 +6,12 @@ import math
 @view_function
 def process_request(request, product:cmod.Product=None):
     products = cmod.Product.objects.all()
+    if product in request.last_five:
+        request.last_five.remove(product)
+    request.last_five.insert(0, product)
+    if len(request.last_five) > 6:
+        del request.last_five[-1]
+
     context = {
         'product': product,
     }

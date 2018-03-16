@@ -22,3 +22,39 @@ a.categories {
   text-align: center;
   padding-top: 15px;
 }
+
+.image-app-base {
+  max-height: 50px;
+  max-width: 50px;
+  padding: 5px;
+}
+
+#image-thumbnails-app-base {
+  padding-left: 0px;
+  list-style-type: none;
+  text-align: center;
+  align-content: center;
+  align-items: center;
+  align-self: center;
+}
+
+#image-thumbnails-app-base > li {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+#recent-viewed {
+  font-size: 12px;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+#recent-div {
+  padding-top: 10px;
+}
+
+#recent-prod-name {
+  font-size: 10px;
+  margin: 0px;
+}

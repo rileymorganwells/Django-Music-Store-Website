@@ -8,9 +8,9 @@
 </ul>
 <div id="main-image-div"><img id="main-image" class="img-fluid img-thumbnail" alt="Main product image" src="${product.image_url()}"/></div>
 <div id="product-info">
-  <h1>${ product.name }</h1>
+  <h1>${ product.name | h}</h1>
   <h4>$${ product.price }</h4>
-  <p>${ product.description }</p>
+  <p>${ product.description | h}</p>
 </div>
 
 <% name = product.__class__.__name__ %>

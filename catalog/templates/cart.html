@@ -1,0 +1,50 @@
+<%inherit file="app_base.htm" />
+
+<%block name="content">
+<h1 id="cart-title">My Shopping Cart</h1>
+<div class="content">
+  <table>
+    <thead>
+      <tr class="table100-head">
+        <th class="column1">Product</th>
+        <th class="column4"></th>
+        <th class="column3">Quantity</th>
+        <th class="column3">Price</th>
+        <th class="column5"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+          <td class="column1">
+              <img class="cart-pics img-thumbnail img-responsive" alt="Extra product image" src="/static/catalog/media/products/cinder_block.jpg"/>  
+          </td>
+          <td class="column4">This is the name of my book</td>
+          <td class="column3">100</td>
+          <td class="column3">
+            $50
+          </td>
+          <td class="column5">
+            <a href="/manager/product.delete/" id="btn-teal" class='btn btn-sm'>X</a>
+          </td>
+        </tr>
+      <tr>
+          <td class="column1">
+              <img class="cart-pics img-thumbnail img-responsive" alt="Extra product image" src="/static/catalog/media/products/pool_stick.jpg"/>  
+          </td>
+          <td class="column4">This is the name of my book</td>
+          <td class="column3">100</td>
+          <td class="column3">
+            $50
+          </td>
+          <td class="column5">
+            <a href="/manager/product.delete/" id="btn-teal" class='btn btn-sm'>X</a>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+  <div>
+    <p><h5 id="checkout">Total cost: $100</h5></p>
+    <p><a href="/catalog/index" class='btn-checkout'><button id="btn-teal" class='btn'>Checkout</button></a></p>
+  </div>
+</div>
+</%block>

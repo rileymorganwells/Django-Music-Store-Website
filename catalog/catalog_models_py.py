@@ -1,91 +1,19 @@
-from django.db import models
-from polymorphic.models import PolymorphicModel
+from django.db import models, transaction
 from django.conf import settings
+from django.forms.models import model_to_dict
+from polymorphic.models import PolymorphicModel
+from decimal import Decimal
+from datetime import datetime
 import stripe
 
-class Category(models.Model):
-    name = models.TextField(blank=True, null=True)
-    description = models.TextField(blank=True, null=True)
-    create_date = models.DateTimeField(blank=True, null=True)
-    last_modified = models.DateTimeField(blank=True, null=True)
+#######################################################################
+###   Products
 
-    def __str__(self):
-        return self.name
+# various product models go here
 
-# pip install django-polymorphic
-class Product(PolymorphicModel):
-    '''Bulk, individual, or rental product'''
-    TYPE_CHOICES = (
-        ('1', 'Individual Product'),
-        ('2', 'Bulk Product'),
-        ('3', 'Rental Product'),
-    )
-    STATUS_CHOICES = (
-        ('A', 'Active'),
-        ('I', 'Inactive'),
-    )
-    create_date = models.DateTimeField(auto_now_add=True)
-    last_modified = models.DateTimeField(auto_now=True)
-    status = models.TextField(choices=STATUS_CHOICES, default='A')
-    name = models.TextField()
-    description = models.TextField()
-    category = models.ForeignKey('Category', on_delete=models.CASCADE)
-    price = models.DecimalField(max_digits=7, decimal_places=2)
 
-    def get_quantity(self):
-        return self.quantity
-
-    def image_url(self):
-        '''Returns the first image on this product as a image_url
-            OR if no images, the "unavailable" image url.
-        '''
-        # always returns a url
-        if self.images.all():
-          url = settings.STATIC_URL + 'catalog/media/products/' + self.images.first().filename
-        else:
-          url = settings.STATIC_URL + 'catalog/media/products/image_unavailable.gif'
-        return url
-
-    def image_urls(self):
-        if self.images.all(): #list of urls
-          urls = []
-          for image in self.images.all():
-              urls.append(settings.STATIC_URL + 'catalog/media/products/' + image.filename)
-        else:  #list of just unavailable
-          urls = [settings.STATIC_URL + 'catalog/media/products/image_unavailable.gif']
-        return urls
-
-class ProductImage(models.Model):
-    filename = models.TextField()
-    product = models.ForeignKey(Product, related_name="images", on_delete=models.CASCADE)
-
-class IndividualProduct(Product):
-    '''A product tracked individually'''
-    TITLE = 'Individual Product'
-    pid = models.TextField()
-
-    def get_quantity(self):
-        return 1
-
-class BulkProduct(Product):
-    '''Bulk Product'''
-    TITLE = 'Bulk Product'
-    quantity = models.IntegerField()
-    reorder_trigger = models.IntegerField()
-    reorder_quantity = models.IntegerField()
-
-    def get_quantity(self):
-        return self.quantity
-
-class RentalProduct(Product):
-    '''Products to be rented'''
-    TITLE = 'Rental Product'
-    pid = models.TextField()
-    max_rental_days = models.IntegerField(null=True, default=0)
-    retire_date = models.DateTimeField(null=True, blank=True)
-
-    def get_quantity(self):
-        return 1
+#######################################################################
+###   Orders
 
 class Order(models.Model):
     '''An order in the system'''
@@ -141,7 +69,7 @@ class Order(models.Model):
         return sum(self.active_items(include_tax_item=False).values_list('quantity', flat=True))
 
 
-   # def recalculate(self):
+    def recalculate(self):
         '''
         Recalculates the total price of the order,
         including recalculating the taxable amount.
@@ -156,10 +84,9 @@ class Order(models.Model):
         # update the total and save
 
 
-
- #   def finalize(self, stripe_charge_token):
+    def finalize(self, stripe_charge_token):
         '''Runs the payment and finalizes the sale'''
- #       with transaction.atomic():
+        with transaction.atomic():
             # recalculate just to be sure everything is updated
 
             # check that all products are available

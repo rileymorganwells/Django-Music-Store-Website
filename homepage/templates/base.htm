@@ -32,6 +32,7 @@
           <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
           <%block name="menu"></%block>
           <ul id="navbar_login" class="navbar-nav ml-auto">
+          <%block name="cart"></%block>
           % if request.user.is_authenticated:
             <li class="nav-item dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Hi, ${ request.user.first_name }!<span class="caret"></span></a>
               <ul class="dropdown-menu">

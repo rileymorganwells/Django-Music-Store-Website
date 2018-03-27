@@ -164,10 +164,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'fomo',
-        'USER': 'postgres',
-        'PASSWORD': 'password',
-        'HOST': 'localhost',
-        'PORT': '',
+        'USER': 'fomoadmin',
+        'PASSWORD': 'Password!',
+        'HOST': 'fomodbinstance.cmqs7z8szvnz.us-west-2.rds.amazonaws.com',
+        'PORT': '5432',
     }
 }
 

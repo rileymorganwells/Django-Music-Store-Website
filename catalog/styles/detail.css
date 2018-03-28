@@ -38,5 +38,9 @@
 }
 
 textarea:focus, input:focus{
-    outline: none;
+  outline: none;
+}
+
+#form_content {
+
 }

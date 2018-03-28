@@ -7,12 +7,14 @@ import math
 @view_function
 def process_request(request, selection:cmod.Category=None):
     products = cmod.Product.objects.all()
+    cart = cmod.Order.objects.all().filter(status='cart').first()
     if selection is not None:
         products = products.filter(category=selection)
         cid = selection.id
     else:
         cid = 0
     context = {
+        'cart': cart,
         'selection': selection,
         'num_pages': math.ceil(products.count()/6),
         jscontext('cid'): cid,

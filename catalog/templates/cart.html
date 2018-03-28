@@ -2,6 +2,8 @@
 
 <%block name="content">
 <h1 id="cart-title">My Shopping Cart</h1>
+<h1>${ len(cart.active_items()) }</h1>
+
 <div class="content">
   <table>
     <thead>
@@ -14,32 +16,19 @@
       </tr>
     </thead>
     <tbody>
+      %for item in cart.active_items():
       <tr>
           <td class="column1">
-              <img class="cart-pics img-thumbnail img-responsive" alt="Extra product image" src="/static/catalog/media/products/cinder_block.jpg"/>  
+              <img class="cart-pics img-thumbnail img-responsive" alt="Extra product image" src="${ cart.get_item(item).product.image_url() }"/>  
           </td>
-          <td class="column4">This is the name of my book</td>
-          <td class="column3">100</td>
-          <td class="column3">
-            $50
-          </td>
+          <td class="column4">${ cart.get_item(item).product.name }</td>
+          <td class="column3">1</td>
+          <td class="column3">$${ cart.get_item(item).product.price }</td>
           <td class="column5">
             <a href="/manager/product.delete/" id="btn-teal" class='btn btn-sm'>X</a>
           </td>
         </tr>
-      <tr>
-          <td class="column1">
-              <img class="cart-pics img-thumbnail img-responsive" alt="Extra product image" src="/static/catalog/media/products/pool_stick.jpg"/>  
-          </td>
-          <td class="column4">This is the name of my book</td>
-          <td class="column3">100</td>
-          <td class="column3">
-            $50
-          </td>
-          <td class="column5">
-            <a href="/manager/product.delete/" id="btn-teal" class='btn btn-sm'>X</a>
-          </td>
-        </tr>
+      %endfor
     </tbody>
   </table>
   <div>

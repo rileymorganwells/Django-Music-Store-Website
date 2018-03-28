@@ -67,6 +67,8 @@ class Formless(forms.Form):
     form_action = None
     form_method = 'POST'
     submit_text = 'Submit'
+    buy_now_text = 'Buy Now!'
+    checkout_text = 'Checkout'
     field_css = [ 'form-control' ]
 
     def __init__(self, request, *args, **kwargs):

@@ -116,12 +116,18 @@ class Order(models.Model):
     def active_items(self, include_tax_item=True):
         '''Returns the active items on this order'''
         # create a query object (filter to status='active')
-
+        orderItems = OrderItem.objects.filter(status='active')
         # if we aren't including the tax item, alter the
         # query to exclude that OrderItem
         # I simply used the product name (not a great choice,
         # but it is acceptable for credit)
-
+        if orderItems:
+            orderItemNames = []
+            for orderItem in orderItems:
+                orderItemNames.append(orderItem.product.id)
+        else:
+            orderItemNames = []
+        return orderItemNames
 
     def get_item(self, product, create=False):
         '''Returns the OrderItem object for the given product'''
@@ -141,7 +147,7 @@ class Order(models.Model):
         return sum(self.active_items(include_tax_item=False).values_list('quantity', flat=True))
 
 
-   # def recalculate(self):
+    def recalculate(self):
         '''
         Recalculates the total price of the order,
         including recalculating the taxable amount.
@@ -150,26 +156,32 @@ class Order(models.Model):
         '''
         # iterate the order items (not including tax item) and get the total price
         # call recalculate on each item
-
+        total = 0
+        for item in self.active_items():
+            item.recalculate()
+            total += item.price
         # update/create the tax order item (calculate at 7% rate)
-
+        tax = total * .07
+        total += tax
         # update the total and save
+        self.total_price = total
 
 
-
- #   def finalize(self, stripe_charge_token):
+    def finalize(self, stripe_charge_token):
         '''Runs the payment and finalizes the sale'''
- #       with transaction.atomic():
+        with transaction.atomic():
             # recalculate just to be sure everything is updated
-
-            # check that all products are available
-
+            self.recalculate()
+            # check that all products are available - try except!!!
+            for item in self.active_items():
+                if item.quantity > Product.objects.all().filter(product=item.product).quantity:
+                    return 5
             # contact stripe and run the payment (using the stripe_charge_token)
 
             # finalize (or create) one or more payment objects
-
+            payment = Payment.objects.create(order=self)
             # set order status to sold and save the order
-
+            self.status = sold
             # update product quantities for BulkProducts
             # update status for IndividualProducts
 
@@ -196,12 +208,15 @@ class OrderItem(PolymorphicModel):
     def recalculate(self):
         '''Updates the order item's price, quantity, extended'''
         # update the price if it isn't already set and we have a product
-
+        if self.price is None:
+            self.price = Product.objects.all().filter(product=self).price
         # default the quantity to 1 if we don't have a quantity set
-
+        if self.quantity is None:
+            self.quantity = 1
         # calculate the extended (price * quantity)
-
+        extended = self.price * self.quantity
         # save the changes
+        self.extended = extended
 
 
 class Payment(models.Model):

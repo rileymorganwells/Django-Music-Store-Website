@@ -6,7 +6,7 @@
         <ul class="navbar-nav ml-auto">
           <li id="cart-li" class="nav-item ${  'active' if request.dmp.page == 'cart' else '' }">
             <a href="/catalog/cart/">
-              ${ len(cartie.active_items()) }<img id="cart" src="/static/catalog/media/cart.png" alt="Shopping cart"/>
+              ${ cartie.num_items() or 0 }<img id="cart" src="/static/catalog/media/cart.png" alt="Shopping cart"/>
             </a>
           </li>
         </ul>

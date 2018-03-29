@@ -2,6 +2,7 @@ from django.db import models
 from polymorphic.models import PolymorphicModel
 from django.conf import settings
 import stripe
+from decimal import *
 
 class Category(models.Model):
     name = models.TextField(blank=True, null=True)
@@ -121,17 +122,15 @@ class Order(models.Model):
         # query to exclude that OrderItem
         # I simply used the product name (not a great choice,
         # but it is acceptable for credit)
+        orderItemIDs = []
         if orderItems:
-            orderItemNames = []
             for orderItem in orderItems:
-                orderItemNames.append(orderItem.product.id)
-        else:
-            orderItemNames = []
-        return orderItemNames
+                orderItemIDs.append(orderItem.product.id)
+        return orderItemIDs
 
     def get_item(self, product, create=False):
         '''Returns the OrderItem object for the given product'''
-        item = OrderItem.objects.filter(order=self, product=product).first()
+        item = OrderItem.objects.filter(order=self, product=product, status='active').first()
         if item is None and create:
             item = OrderItem.objects.create(order=self, product=product, price=product.price, quantity=0)
         elif create and item.status != 'active':
@@ -144,7 +143,11 @@ class Order(models.Model):
 
     def num_items(self):
         '''Returns the number of items in the cart'''
-        return sum(self.active_items(include_tax_item=False).values_list('quantity', flat=True))
+        items = 0
+        for item in self.active_items():
+            items += self.get_item(item).quantity
+        return items
+        #return sum(self.active_items(include_tax_item=False).values_list('quantity', flat=True))
 
 
     def recalculate(self):
@@ -158,13 +161,16 @@ class Order(models.Model):
         # call recalculate on each item
         total = 0
         for item in self.active_items():
-            item.recalculate()
-            total += item.price
+            orderItem = self.get_item(item)
+            orderItem.recalculate()
+            total += orderItem.extended
         # update/create the tax order item (calculate at 7% rate)
-        tax = total * .07
+        tax = total * Decimal(.07)
+        tax = round(tax,2)
         total += tax
         # update the total and save
         self.total_price = total
+        self.save()
 
 
     def finalize(self, stripe_charge_token):
@@ -217,6 +223,7 @@ class OrderItem(PolymorphicModel):
         extended = self.price * self.quantity
         # save the changes
         self.extended = extended
+        self.save()
 
 
 class Payment(models.Model):

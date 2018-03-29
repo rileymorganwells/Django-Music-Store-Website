@@ -37,20 +37,32 @@ def process_request(request, product:cmod.Product=None):
 class AddToCart(Formless):
 
     def init(self):
-        self.fields['pid'] = forms.CharField(label='id')
+        self.fields['pid'] = forms.CharField(label='id', widget=forms.HiddenInput())
         self.fields['quantity'] = forms.IntegerField(min_value=1, max_value=10)
 
     def clean(self):
         return self.cleaned_data
 
     def commit(self):
+        #Grab product from database
         pid = self.cleaned_data.get('pid')
+        qty = self.cleaned_data.get('quantity')
+        product = cmod.Product.objects.all().filter(id=pid).first()
+        #Grab cart. If there is no cart, create one
         self.order = cmod.Order.objects.all().filter(status='cart').first()
         if self.order is None:
-            self.order = cmod.Order(status='cart')
+            self.order = cmod.Order(status='cart', user=self.request.user)
         self.order.save()
+        #Search for the product in the cart. If it's there already, just update it's quantity
+        # if self.order.active_items().index(pid) is not None:
+        #     item = self.order.get_item(pid)
+        #     item.quantity += qty
+        #     item.save()
+        #Create order item, fill it with objects attributes
         self.orderItem = cmod.OrderItem()
-        self.orderItem.quantity = self.cleaned_data.get('quantity')
+        self.orderItem.product = product
+        self.orderItem.price = product.price
+        self.orderItem.quantity = qty
         self.orderItem.order = self.order
-        self.orderItem.product = cmod.Product.objects.all().filter(id=pid).first()
+        self.orderItem.extended = qty * product.price
         self.orderItem.save() 

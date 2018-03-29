@@ -2,7 +2,6 @@
 
 <%block name="content">
 <h1 id="cart-title">My Shopping Cart</h1>
-<h1>${ len(cart.active_items()) }</h1>
 
 <div class="content">
   <table>
@@ -22,18 +21,18 @@
               <img class="cart-pics img-thumbnail img-responsive" alt="Extra product image" src="${ cart.get_item(item).product.image_url() }"/>  
           </td>
           <td class="column4">${ cart.get_item(item).product.name }</td>
-          <td class="column3">1</td>
-          <td class="column3">$${ cart.get_item(item).product.price }</td>
+          <td class="column3">${ cart.get_item(item).quantity }</td>
+          <td class="column3">$${ cart.get_item(item).extended }</td>
           <td class="column5">
-            <a href="/manager/product.delete/" id="btn-teal" class='btn btn-sm'>X</a>
+            <a href="/catalog/cart.delete/${ cart.get_item(item).id }" id="btn-teal" class='btn btn-sm'>X</a>
           </td>
         </tr>
       %endfor
     </tbody>
   </table>
   <div>
-    <p><h5 id="checkout">Total cost: $100</h5></p>
-    <p><a href="/catalog/index" class='btn-checkout'><button id="btn-teal" class='btn'>Checkout</button></a></p>
+    <p><h5 id="checkout">Total cost: $${ cart.total_price }</h5></p>
+    <p><a href="/catalog/checkout" class='btn-checkout'><button id="btn-teal" class='btn'>Proceed to Checkout</button></a></p>
   </div>
 </div>
 </%block>

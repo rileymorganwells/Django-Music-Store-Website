@@ -2,22 +2,20 @@ from django.conf import settings
 from django_mako_plus import view_function, jscontext
 from catalog import models as cmod
 from catalog.models import Category
+from django.http import HttpResponseRedirect
 import math
 
 @view_function
-def process_request(request, selection:cmod.Category=None):
-    products = cmod.Product.objects.all()
+def process_request(request):
     cart = cmod.Order.objects.all().filter(status='cart').first()
-    if selection is not None:
-        products = products.filter(category=selection)
-        cid = selection.id
-    else:
-        cid = 0
+    cart.recalculate()
     context = {
         'cart': cart,
-        'selection': selection,
-        'num_pages': math.ceil(products.count()/6),
-        jscontext('cid'): cid,
-        jscontext('pnum'): math.ceil(products.count()/6),
     }
     return request.dmp.render('cart.html', context)
+
+@view_function
+def delete(request, orderItem:cmod.OrderItem):
+    orderItem.status = 'deleted'
+    orderItem.save()
+    return HttpResponseRedirect('/catalog/cart/')

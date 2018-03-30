@@ -117,11 +117,13 @@ class Order(models.Model):
     def active_items(self, include_tax_item=True):
         '''Returns the active items on this order'''
         # create a query object (filter to status='active')
-        orderItems = OrderItem.objects.all().filter(status='active', order=self)
-        # if we aren't including the tax item, alter the
-        # query to exclude that OrderItem
-        # I simply used the product name (not a great choice,
-        # but it is acceptable for credit)
+        # if we aren't including the tax item, alter the query to exclude that OrderItem
+        # I simply used the product name (not a great choice, but it is acceptable for credit)
+        taxproduct = Product.objects.get(name="Tax")
+        if include_tax_item:
+            orderItems = OrderItem.objects.all().filter(status='active', order=self)
+        else:
+            orderItems = OrderItem.objects.all().filter(status='active', order=self).exclude(product=taxproduct)
         orderItemIDs = []
         if orderItems:
             for orderItem in orderItems:
@@ -159,15 +161,18 @@ class Order(models.Model):
         '''
         # iterate the order items (not including tax item) and get the total price
         # call recalculate on each item
+        taxproduct = Product.objects.get(name="Tax")
         total = 0
-        for item in self.active_items():
+        for item in self.active_items(include_tax_item=False):
             orderItem = self.get_item(item)
             orderItem.recalculate()
             total += orderItem.extended
         # update/create the tax order item (calculate at 7% rate)
-        tax = total * Decimal(.07)
-        tax = round(tax,2)
-        total += tax
+        tax = OrderItem.objects.get(product=taxproduct, order=self)
+        tax.price = total * Decimal(.07)
+        tax.price = round(tax.price,2)
+        tax.save()
+        total += tax.price
         # update the total and save
         self.total_price = total
         self.save()

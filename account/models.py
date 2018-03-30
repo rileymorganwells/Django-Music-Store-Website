@@ -18,4 +18,6 @@ class User(AbstractCUser):
         except:
             cart = cmod.Order(status='cart', user=self)
             cart.save()
+            tax = cmod.OrderItem(order=cart, product=cmod.Product.objects.get(name="Tax"), quantity=1)
+            tax.save()
         return cart

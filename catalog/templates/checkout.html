@@ -3,9 +3,9 @@
 
 
 <%block name="content">
+<div id="checkout-content">
     <h1>Checkout</h1>
-
-    <h2>You are about to pay $${ cart.total_price }</h2>
+    <h2>Total: $${ cart.total_price }</h2>
     <%fl:render>
         <script
             src="https://checkout.stripe.com/checkout.js" 
@@ -19,4 +19,5 @@
             data-label="Pay Now">
         </script>
     </%fl:render>
+</div>
 </%block>

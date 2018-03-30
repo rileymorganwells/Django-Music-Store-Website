@@ -21,12 +21,15 @@ def process_request(request, product:cmod.Product=None):
     request.last_five.insert(0, product)
     if len(request.last_five) > 6:
         del request.last_five[-1]
-
+    
     form = AddToCart(request, initial=prodict)
     form.submit_text = form.buy_now_text
     if form.is_valid():
-        form.commit()
-        return HttpResponseRedirect('/catalog/cart/')
+        if request.user.is_authenticated:
+            form.commit()
+            return HttpResponseRedirect('/catalog/cart/')
+        else:
+            return HttpResponseRedirect('/account/signup/')
 
     context = {
         'product': product,
@@ -43,23 +46,38 @@ class AddToCart(Formless):
     def clean(self):
         return self.cleaned_data
 
+    def clean_quantity(self):
+        prod = cmod.Product.objects.get(id=self.cleaned_data.get('pid'))
+        try:
+            qtyavail = prod.get_quantity() - cmod.OrderItem.objects.get(product=prod, status='active', order=self.request.user.get_shopping_cart()).quantity
+        except:
+            qtyavail = prod.get_quantity()
+        quantity = self.cleaned_data.get('quantity')
+        if quantity > qtyavail:
+            if qtyavail == 0:
+                raise forms.ValidationError('Sorry, ' + prod.name + ' is currently out of stock.')
+            else:
+                raise forms.ValidationError('Sorry, there are only ' + str(qtyavail) + ' products available!')
+        return quantity
+
     def commit(self):
         #Grab product from database
         pid = self.cleaned_data.get('pid')
         qty = self.cleaned_data.get('quantity')
-        product = cmod.Product.objects.all().filter(id=pid).first()
-        #Grab cart. If there is no cart, create one
+        product = cmod.Product.objects.get(id=pid)
+        #Grab cart
         self.cart = self.request.user.get_shopping_cart()
         #Search for the product in the cart. If it's there already, just update it's quantity
-        # if self.order.active_items().index(pid) is not None:
-        #     item = self.order.get_item(pid)
-        #     item.quantity += qty
-        #     item.save()
+        if product.id in self.cart.active_items():
+            item = self.cart.get_item(pid)
+            item.quantity += qty
+            item.save()
+        else:
         #Create order item, fill it with objects attributes
-        self.orderItem = cmod.OrderItem()
-        self.orderItem.product = product
-        self.orderItem.price = product.price
-        self.orderItem.quantity = qty
-        self.orderItem.order = self.cart
-        self.orderItem.extended = qty * product.price
-        self.orderItem.save() 
+            self.orderItem = cmod.OrderItem()
+            self.orderItem.product = product
+            self.orderItem.price = product.price
+            self.orderItem.quantity = qty
+            self.orderItem.order = self.cart
+            self.orderItem.extended = qty * product.price
+            self.orderItem.save() 

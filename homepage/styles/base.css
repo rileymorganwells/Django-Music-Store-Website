@@ -70,6 +70,7 @@
 
 #content {
   padding: 10px;
+  padding-top: 0px;
 }
 
 #footer {
@@ -99,4 +100,18 @@
     1px -1px 0 #000,
     -1px 1px 0 #000,
     1px 1px 0 #000;
+}
+
+#cart {
+  max-height: 30px;
+  max-width: 30px;
+  padding-right: 5px;
+}
+
+#cart-li {
+  padding-right: 10px;
+}
+
+#cart-num {
+  text-decoration-line: none;
 }

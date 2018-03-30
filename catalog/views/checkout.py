@@ -8,7 +8,7 @@ import math
 
 @view_function
 def process_request(request):
-    cart = cmod.Order.objects.all().filter(status='cart').first()
+    cart = cmod.Order.objects.get(user=request.user)
     cart.recalculate()
     form = Checkout(request)
     form.submit_text = form.checkout_text

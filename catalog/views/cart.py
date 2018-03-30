@@ -7,7 +7,7 @@ import math
 
 @view_function
 def process_request(request):
-    cart = cmod.Order.objects.all().filter(status='cart').first()
+    cart = request.user.get_shopping_cart()
     cart.recalculate()
     context = {
         'cart': cart,

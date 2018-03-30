@@ -49,10 +49,7 @@ class AddToCart(Formless):
         qty = self.cleaned_data.get('quantity')
         product = cmod.Product.objects.all().filter(id=pid).first()
         #Grab cart. If there is no cart, create one
-        self.order = cmod.Order.objects.all().filter(status='cart').first()
-        if self.order is None:
-            self.order = cmod.Order(status='cart', user=self.request.user)
-        self.order.save()
+        self.cart = self.request.user.get_shopping_cart()
         #Search for the product in the cart. If it's there already, just update it's quantity
         # if self.order.active_items().index(pid) is not None:
         #     item = self.order.get_item(pid)
@@ -63,6 +60,6 @@ class AddToCart(Formless):
         self.orderItem.product = product
         self.orderItem.price = product.price
         self.orderItem.quantity = qty
-        self.orderItem.order = self.order
+        self.orderItem.order = self.cart
         self.orderItem.extended = qty * product.price
         self.orderItem.save() 

@@ -8,9 +8,12 @@ import math
 @view_function
 def process_request(request):
     cart = request.user.get_shopping_cart()
+    tax = cmod.Product.objects.get(name="Tax")
+    taxitem = cart.get_item(product=tax)
     cart.recalculate()
     context = {
         'cart': cart,
+        'tax': taxitem,
     }
     return request.dmp.render('cart.html', context)
 
@@ -18,4 +21,6 @@ def process_request(request):
 def delete(request, orderItem:cmod.OrderItem):
     orderItem.status = 'deleted'
     orderItem.save()
+    cart = request.user.get_shopping_cart()
+    cart.recalculate()
     return HttpResponseRedirect('/catalog/cart/')

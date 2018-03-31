@@ -1,6 +1,9 @@
 from django.db import models
 from polymorphic.models import PolymorphicModel
 from django.conf import settings
+from django.db import transaction
+from django.http import HttpResponseRedirect
+import win32api
 import stripe
 from decimal import *
 
@@ -185,14 +188,28 @@ class Order(models.Model):
             self.recalculate()
             # check that all products are available - try except!!!
             for item in self.active_items():
-                if item.quantity > Product.objects.all().filter(product=item.product).quantity:
-                    return 5
+                myitem = self.get_item(item)
+                prod = Product.objects.get(id=myitem.product.id)
+                qtyavail = prod.get_quantity()
+                quantity = myitem.quantity
+                if quantity > qtyavail:
+                    if qtyavail == 0:
+                        win32api.MessageBox(0, 'Sorry, ' + prod.name + ' is currently out of stock. Please remove from cart.', 'Error with Cart')
+                    else:
+                        win32api.MessageBox(0, 'Sorry, there are only ' + str(qtyavail) + prod.name + ' products available! Please remove excess from cart.', 'Error with Cart')
+                    return HttpResponseRedirect('/catalog/cart/')
             # contact stripe and run the payment (using the stripe_charge_token)
-
+            charge = stripe.Charge.create(
+                amount=int(self.total_price*100),
+                currency="usd",
+                description="Example charge",
+                source=stripe_charge_token,
+                )
             # finalize (or create) one or more payment objects
-            payment = Payment.objects.create(order=self)
+                # payment = Payment(order=self)
             # set order status to sold and save the order
-            self.status = sold
+                # self.status = sold
+                # self.save()
             # update product quantities for BulkProducts
             # update status for IndividualProducts
 

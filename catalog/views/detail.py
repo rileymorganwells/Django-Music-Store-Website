@@ -27,6 +27,8 @@ def process_request(request, product:cmod.Product=None):
     if form.is_valid():
         if request.user.is_authenticated:
             form.commit()
+            cart = request.user.get_shopping_cart()
+            cart.recalculate()
             return HttpResponseRedirect('/catalog/cart/')
         else:
             return HttpResponseRedirect('/account/signup/')

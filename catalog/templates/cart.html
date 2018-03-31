@@ -16,7 +16,10 @@
     </thead>
     <tbody>
       %for item in cart.active_items():
-      <tr>
+      %if cart.get_item(item) == tax:
+
+      %else:
+        <tr>
           <td class="column1">
               <img class="cart-pics img-thumbnail img-responsive" alt="Extra product image" src="${ cart.get_item(item).product.image_url() }"/>  
           </td>
@@ -27,7 +30,15 @@
             <a href="/catalog/cart.delete/${ cart.get_item(item).id }" id="btn-teal" class='btn btn-sm'>X</a>
           </td>
         </tr>
+      %endif
       %endfor
+      <tr>
+        <td class="column1"></td>
+        <td class="column4">${ tax.product.name }</td>
+        <td class="column3"></td>
+        <td class="column3">$${ tax.extended }</td>
+        <td class="column5"></td>
+      </tr>
     </tbody>
   </table>
   <div>

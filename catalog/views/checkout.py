@@ -4,6 +4,7 @@ from catalog import models as cmod
 from django import forms
 from formlib.form import Formless
 from django.http import HttpResponseRedirect
+import sys, traceback
 import math
 
 @view_function
@@ -33,6 +34,12 @@ class Checkout(Formless):
         self.fields['zip'] = forms.CharField(label='Zip Code')
 
     def clean(self):
+        cart = self.request.user.get_shopping_cart()
+        try:
+            cart.finalize(self.cleaned_data.get('stripeToken'))
+        except:
+            traceback.print_exc()
+            raise forms.ValidationError('There was an error with your payment information. Please try again.')
         return self.cleaned_data
 
     def commit(self):

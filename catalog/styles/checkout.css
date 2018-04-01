@@ -3,3 +3,7 @@
     margin-top: 0;
     padding: 20px;
 }
+
+button.stripe-button-el {
+    display: none;
+}

@@ -8,20 +8,19 @@ import math
 
 @view_function
 def process_request(request, product:cmod.Product=None):
-    prodict = product.__dict__
+    prodict = {}
     prodict['pid'] = product.id
-    productclass = product.__class__.__name__
-    if productclass == 'BulkProduct':
-        prodict['max'] = product.quantity
+    prodict['max'] = product.get_quantity()
+    if product.__class__.__name__ == 'BulkProduct':
+        prodict['bulk'] = True
     else:
-        prodict['quantity'] = 1
+        prodict['bulk'] = False
     products = cmod.Product.objects.all()
     if product in request.last_five:
         request.last_five.remove(product)
     request.last_five.insert(0, product)
     if len(request.last_five) > 6:
         del request.last_five[-1]
-    
     form = AddToCart(request, initial=prodict)
     form.submit_text = form.buy_now_text
     if form.is_valid():
@@ -43,7 +42,10 @@ class AddToCart(Formless):
 
     def init(self):
         self.fields['pid'] = forms.CharField(label='id', widget=forms.HiddenInput())
-        self.fields['quantity'] = forms.IntegerField(min_value=1, max_value=10)
+        if self.initial['bulk'] == False:
+            self.fields['quantity'] = forms.IntegerField(initial=1, widget=forms.HiddenInput())
+        else:
+            self.fields['quantity'] = forms.IntegerField(initial=1, min_value=1, max_value=self.initial['max'])
 
     def clean(self):
         return self.cleaned_data

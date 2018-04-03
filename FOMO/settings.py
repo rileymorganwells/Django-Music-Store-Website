@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 
 import os
 import shutil
+import stripe
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -64,6 +65,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'catalog.history.LastFiveMiddleware',
+    'account.basicauth.BasicAuthMiddleware',
 ]
 
 ROOT_URLCONF = 'FOMO.urls'
@@ -162,10 +164,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'fomo',
-        'USER': 'postgres',
-        'PASSWORD': 'password',
-        'HOST': 'localhost',
-        'PORT': '',
+        'USER': 'fomoadmin',
+        'PASSWORD': 'Password!',
+        'HOST': 'fomodbinstance.cmqs7z8szvnz.us-west-2.rds.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
@@ -239,3 +241,8 @@ LOGGING = {
         },
     },
 }
+
+### STRIPE KEYS
+STRIPE_PUBLIC_KEY = os.environ.get("STRIPE_SECRET_KEY", "pk_test_Jf0LmurxTwDlAXIjKd5j5jzu")
+STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY", "sk_test_nt9aq6bnjN5MvINwFqCaHPkj")
+stripe.api_key = STRIPE_SECRET_KEY

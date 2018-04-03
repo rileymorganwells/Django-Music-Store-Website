@@ -1,5 +1,6 @@
 from django.db import models
 from cuser.models import AbstractCUser
+from catalog import models as cmod
 
 class User(AbstractCUser):
     birthdate = models.DateField(blank=True, null=True)
@@ -10,3 +11,13 @@ class User(AbstractCUser):
 
     def get_purchases(self):
         return [ 'Roku Ultimate 2000', 'USB Cable', 'Candy Bar' ]
+
+    def get_shopping_cart(self):
+        try:
+            cart = cmod.Order.objects.get(status='cart', user=self)
+        except:
+            cart = cmod.Order(status='cart', user=self)
+            cart.save()
+            tax = cmod.OrderItem(order=cart, product=cmod.Product.objects.get(name="Tax"), quantity=1)
+            tax.save()
+        return cart

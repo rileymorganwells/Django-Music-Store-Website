@@ -1,0 +1,49 @@
+<%inherit file="app_base.htm" />
+
+<%block name="content">
+<h1 id="cart-title">My Shopping Cart</h1>
+
+<div class="content">
+  <table>
+    <thead>
+      <tr class="table100-head">
+        <th class="column1">Product</th>
+        <th class="column4"></th>
+        <th class="column3">Quantity</th>
+        <th class="column3">Price</th>
+        <th class="column5"></th>
+      </tr>
+    </thead>
+    <tbody>
+      %for item in cart.active_items():
+      %if cart.get_item(item) == tax:
+
+      %else:
+        <tr>
+          <td class="column1">
+              <img class="cart-pics img-thumbnail img-responsive" alt="Extra product image" src="${ cart.get_item(item).product.image_url() }"/>  
+          </td>
+          <td class="column4">${ cart.get_item(item).product.name }</td>
+          <td class="column3">${ cart.get_item(item).quantity }</td>
+          <td class="column3">$${ cart.get_item(item).extended }</td>
+          <td class="column5">
+            <a href="/catalog/cart.delete/${ cart.get_item(item).id }" id="btn-teal" class='btn btn-sm'>X</a>
+          </td>
+        </tr>
+      %endif
+      %endfor
+      <tr>
+        <td class="column1"></td>
+        <td class="column4">${ tax.product.name }</td>
+        <td class="column3"></td>
+        <td class="column3">$${ tax.extended }</td>
+        <td class="column5"></td>
+      </tr>
+    </tbody>
+  </table>
+  <div>
+    <p><h5 id="checkout">Total cost: $${ cart.total_price }</h5></p>
+    <p><a href="/catalog/checkout" class='btn-checkout'><button id="btn-teal" class='btn'>Proceed to Checkout</button></a></p>
+  </div>
+</div>
+</%block>

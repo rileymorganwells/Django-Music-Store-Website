@@ -58,3 +58,18 @@ a.categories {
   font-size: 10px;
   margin: 0px;
 }
+
+#thankyou-content {
+  background-color: #EEEEEE;
+  margin-top: 0;
+  padding: 20px;
+  text-align: center;
+}
+
+#thanks {
+  padding-bottom: 10px;
+}
+
+#btn-thanks {
+  padding: 15px; 
+}

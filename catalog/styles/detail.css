@@ -27,8 +27,7 @@
 }
 
 #buy-now {
-  float: right;
-  display: inline-block;
+
 }
 
 #quantity {
@@ -38,5 +37,36 @@
 }
 
 textarea:focus, input:focus{
-    outline: none;
+  outline: none;
+}
+
+label {
+  display: inline-block;
+  padding-right: 10px;
+  font-weight: bold;
+  padding-top: 2px;
+}
+
+#id_quantity {
+  width: 60px;
+  height: 30px;
+  border-radius: 5px;
+  border: 2px solid #44BF9E;
+  text-align: center;
+  float: right;
+  display: inline-block;
+}
+
+form#form {
+  float: right;
+}
+
+p.text-center {
+  padding: 0px;
+  text-align: right;
+  float: right;
+}
+
+p {
+  margin-bottom: 5px;
 }

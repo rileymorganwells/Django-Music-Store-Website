@@ -10,7 +10,7 @@ def process_request(request):
     form = MyForm(request)
     if form.is_valid():
         form.commit()
-        return HttpResponseRedirect('/account/index/')
+        return HttpResponseRedirect('/catalog/cart/')
 
     return request.dmp.render('login.html', {
         'form': form,

@@ -6,7 +6,7 @@ import math
 
 @view_function
 def process_request(request, selection:cmod.Category=None):
-    products = cmod.Product.objects.all()
+    products = cmod.Product.objects.all().exclude(name="Tax")
     if selection is not None:
         products = products.filter(category=selection)
         cid = selection.id
@@ -23,7 +23,7 @@ def process_request(request, selection:cmod.Category=None):
 @view_function
 def products(request, selection:cmod.Category=None, pnum:int=1):
     #do work
-    products = cmod.Product.objects.all().order_by('name')
+    products = cmod.Product.objects.all().order_by('name').exclude(name="Tax")
     if selection is not None:
         products = products.filter(category=selection).order_by('name')
     products = products[(pnum-1)*6:pnum*6]

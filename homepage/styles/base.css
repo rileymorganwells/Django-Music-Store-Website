@@ -70,6 +70,7 @@
 
 #content {
   padding: 10px;
+  padding-top: 0px;
 }
 
 #footer {
@@ -99,4 +100,12 @@
     1px -1px 0 #000,
     -1px 1px 0 #000,
     1px 1px 0 #000;
+}
+
+#cart {
+
+}
+
+#cart-num {
+  text-decoration-line: none;
 }

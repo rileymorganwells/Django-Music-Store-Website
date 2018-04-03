@@ -1,8 +1,30 @@
 <%inherit file="app_base.htm" />
 
 <%block name="content">
-    <div class="content">
-        <h3>Hi, ${ request.user.first_name }! :) Welcome to your account!</h3>
-        <h4 class="utc-time">Current time in UTC: ${ utc_time }</h4>
-    </div>
+<div id="account-content">
+    <h1>Orders</h1>
+    <h4>Welcome to your account, ${ request.user.first_name }!</h4>
+    <table>
+        %for item in orders:
+        <thead>
+            <tr class="table100-head">
+                <th class="column4">Date: ${ item.order_date.date() } | Order total: $${ item.total_price }</th>
+                <th class="column1"></th>
+                <th class="column3"></th>
+                <th class="column3"></th>
+                <th class="column5"></th>
+            </tr>
+        </thead>
+        %for lineitem in item.active_items(include_tax_item=False):
+        <tr>
+            <td id='lineitem' class="column4"> ${ item.get_item(lineitem).product.name } - $${ item.get_item(lineitem).price } (quantity: ${ item.get_item(lineitem).quantity })</td>
+            <td class="column1"></td>
+            <td class="column3"></td>
+            <td class="column3"></td>
+            <td class="column5"></td>
+        </tr>
+        %endfor
+        %endfor
+    </table>  
+</div>
 </%block>

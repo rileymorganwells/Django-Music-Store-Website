@@ -33,6 +33,12 @@
           <%block name="menu"></%block>
           <ul id="navbar_login" class="navbar-nav ml-auto">
           % if request.user.is_authenticated:
+            <li class="nav-item ${  'active' if request.dmp.page == 'cart' else '' }">
+              <a id="cart-num" href="/catalog/cart/">
+                <i class="fas fa-shopping-cart"></i>  ${ request.user.get_shopping_cart().num_items() - 1 or 0 }
+                <!--<img id="cart" src="/static/catalog/media/cart.png" alt="Shopping cart"/>-->
+              </a>
+            </li>
             <li class="nav-item dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Hi, ${ request.user.first_name }!<span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a id="navbar_login_dropdown" href="/account/index/">My Account</a></li>

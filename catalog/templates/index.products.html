@@ -6,7 +6,7 @@
     %for product in products:
     <a id="product-link" href="/catalog/detail/${ product.id }"><li>
       <div class="price">$${ product.price }</div>
-      <div class="title"><h5>${ product.name }</h5></div>
+      <div class="title"><h5>${ product.name | h }</h5></div>
       <div class="image"><img class="img-fluid" src="${product.image_url()}"/></div>
     </a></li>
     %endfor

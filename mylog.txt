@@ -1,0 +1,396 @@
+commit b0dac4eac22808a2cac5554ae86b00602943e0db
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Mon Apr 2 23:18:02 2018 -0600
+
+    Finished finalize method, added customer account/orders homepage, fixed a lot of css to make everything look pretty. Website is COMPLETE. For our class, at least
+
+commit 21b32c216272b322f6335c9c8b0de9b2eabaa5d9
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Mon Apr 2 00:49:08 2018 -0600
+
+    Created json product API to return products based on URL query. Still working on basic auth. Almost done
+
+commit ab924a97b83fb7b0a56279d6cd220adbddc483db
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Sun Apr 1 13:57:02 2018 -0600
+
+    Updated formlib and customized all of my forms. Made detail page look much better. Added max-quantity functionality to form fields
+
+commit ec47fe0f8fe1ae30f62b34fc93ef65c31c2b59a1
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Fri Mar 30 23:56:30 2018 -0600
+
+    Finalized checkout functionality - got my first payments to come in through stripe! Woot woot!
+
+commit 70405e1a610119af9e6dce9648e5b0cffdd61f12
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Fri Mar 30 00:29:28 2018 -0600
+
+    Completed cart functionality. Items can be added to, removed, and updated in cart
+
+commit 99f2479e03bddc5507b5ba6e99fdcc8c7ef24f29
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Thu Mar 29 21:33:31 2018 -0600
+
+    I was implementing the cart creation process wrong earlier, I now have it tied to specific users
+
+commit d478e079850dd66d15f754201f0f008560ff8aec
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Wed Mar 28 23:03:55 2018 -0600
+
+    Updated a lot of Order and OrderItem methods, updates cart, detail, and checkout py files to work a little better
+
+commit d28951c880cb491e25efb5a92ae7eb5837baddad
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Tue Mar 27 22:41:47 2018 -0600
+
+    Made a lot of progress writing all views and forms and templates for adding items to and displaying cart
+
+commit deab92c3212a5e002690e90d772a144c7e3915fd
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Tue Mar 27 17:52:49 2018 -0600
+
+    Major updates. Trying to get new order models working properly
+
+commit 00e9624a337d57e70fc9b3d6abedb860659f0310
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Mon Mar 26 21:35:54 2018 -0600
+
+    added order, orderline, purchase models. Added basicauth.py. Created Stripe account, added Stripe library. Moved database to AWS
+
+commit 0e2d31569a63bf808a3c48277561127778aafc2a
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Thu Mar 22 11:59:01 2018 -0600
+
+    Added VS Code helper files
+
+commit ba23e2d1ff40a011f0a6fabe5a18efbd637ff085
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Wed Mar 21 14:22:26 2018 -0600
+
+    Finishing touches for Sprint 7 - pipe h to escape input errors and fixed recently viewed query
+
+commit 1c00d0e67b4cc51b50fc9300f133e27fb223c648
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Fri Mar 16 00:14:41 2018 -0600
+
+    finished sprint 6 - got product details working and sessions set up for last five
+
+commit 681f9f4db8c31e406b6c2e893eb339441517683c
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Thu Mar 15 18:21:33 2018 -0600
+
+    finished main content of details page - images, jquery, quantity/buy button
+
+commit 2e4e39ae90140e2537ec133792585967b54afa45
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Thu Mar 15 15:09:31 2018 -0600
+
+    got paginator to work! Woot woot! learned some serious javascript
+
+commit 47edda7bdf955dd42c1883da2c3c0aa8cf66227f
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Thu Mar 15 00:07:19 2018 -0600
+
+    tried (unsuccessfully) to get a new paginator working. Finished up pre-sprint6 reqs
+
+commit f627edba60d8681f9dfd8e901ebb902e8707db9f
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Wed Mar 14 14:49:59 2018 -0600
+
+    started sprint 6
+
+commit 6e8636fcbaaf04e127bc81175e826743af85a579
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Wed Mar 7 15:12:00 2018 -0700
+
+    fixed image_urls method
+
+commit 6a1aa0c7ab6df35b9db28954898657a197993208
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Tue Mar 6 21:16:23 2018 -0700
+
+    finished up sprint 5, got all products to show up w/ categories
+
+commit 9df8f75b54f72af154278579599c33c3e9f0e49f
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Tue Mar 6 13:59:13 2018 -0700
+
+    lots of catalog updates
+
+commit 5a0a7e84838a546f4668af737723ee7db5436ce8
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Tue Mar 6 00:02:05 2018 -0700
+
+    made index page and .py for catalog app, figured out how to list categories
+
+commit ef533f06b7b3753a17b9a1d404b88160cded1bb4
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Mon Mar 5 20:29:17 2018 -0700
+
+    added productimage model, image_url methods, made sure images would load on product list page
+
+commit ac09f93f0d3928fffab9da9ed77a742312ae612b
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Thu Mar 1 23:09:27 2018 -0700
+
+    made all necessary updates for accessibility friendliness
+
+commit 632c32ae73ed2a010f12cb8eb08b884600793383
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Thu Mar 1 13:52:20 2018 -0700
+
+    updated index of homepage
+
+commit 68c2a90d11d17de4358d95d06d609619c7b43a40
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Tue Feb 27 22:07:32 2018 -0700
+
+    finished Sprint4 by adding initial equals in form assignment - final error fixed!
+
+commit 42808961f3de0a146475c63dda3111c7a08f9148
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Mon Feb 26 15:06:04 2018 -0700
+
+    fixed logo
+
+commit f28263b44099bfc80bdfae66fc86066d03b7786b
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Mon Feb 26 15:01:38 2018 -0700
+
+    updated edit method
+
+commit 4b2a29cd4830e6554beb1451c48afb4b529ae06a
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Mon Feb 26 13:26:12 2018 -0700
+
+    upgraded to dmp 2.02
+
+commit 89f69e63d4622636f7b591795288f7277f5f3f57
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Mon Feb 26 13:15:08 2018 -0700
+
+    fixed auto-form submit problem
+
+commit e60526c919f2c28b71dbcaaf9ef82c2e8014210d
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Sat Feb 24 15:54:54 2018 -0700
+
+    still trying to get edit form to load before automatically submitting
+
+commit ce57bf93571cc51122ecd8ceee3e74bbc17f84f0
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Fri Feb 23 01:03:12 2018 -0700
+
+    made some updates
+
+commit 854aa47332710068f39f4d55bbd49635828d6ba9
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Thu Feb 22 23:10:26 2018 -0700
+
+    got jquery working - made lots of form updates!
+
+commit 5b65efc96f003b29b423b9ae9e88afc958cf5eec
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Thu Feb 22 14:37:44 2018 -0700
+
+    added forms to create/edit pages
+
+commit b9dce3cdc4c1272c6f3928069b0425d689f09130
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Wed Feb 21 23:13:52 2018 -0700
+
+    added create, edit, delete buttons that pass object id
+
+commit c77d76790ecebe04dc1e6b1174f914cf2835d9f9
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Wed Feb 21 22:44:01 2018 -0700
+
+    made tons of model updates, got product page working
+
+commit f409b7743217a76a2ade95bcbfeb6c01534d1970
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Thu Feb 15 14:34:05 2018 -0700
+
+    finished product/cataegory models, loaded database w/ yaml file, made migrations, etc.
+
+commit a6a0b4f6724c81f85d2823cf413401d9eabe5ec9
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Wed Feb 14 14:59:29 2018 -0700
+
+    sldfkj
+
+commit 003b41ebc728dd77718b4330eb2b65f3da60ddd4
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Wed Feb 14 14:56:51 2018 -0700
+
+    added yaml, updated models
+
+commit b3d0048aac1415daa37b12caacfd065a8362537e
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Tue Feb 13 12:40:32 2018 -0700
+
+    deleted extra files in project
+
+commit a696c9332da679ab4158a5346783962b50360472
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Mon Feb 12 21:39:17 2018 -0700
+
+    changed names of things in models.py
+
+commit 4ce8ce9e00bdd76121f73a05779d3cbbced02c2c
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Mon Feb 12 21:36:46 2018 -0700
+
+    added catalog and manager apps, updated settings.py
+
+commit d0a0cecf179856db6ad549e3ba888e433d1ea16f
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Mon Feb 12 15:12:49 2018 -0700
+
+    deleted sprint 1 rubric
+
+commit 44849021be6ed2495c372810cd727b8259249caa
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Mon Feb 12 15:00:06 2018 -0700
+
+    new migrations  created superuser for myself
+
+commit efe6baff8c41efe02bf311fe5c559e049ef5a8fb
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Mon Feb 12 14:56:25 2018 -0700
+
+    changedettings to add postgres
+
+commit e02b56b23de76d0e211d4a7317f69e8c63f95125
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Mon Feb 12 12:53:29 2018 -0700
+
+    change time zone setting
+
+commit 3731d78c104a8f72a1f5efcf6fc0c63c5eea66eb
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Thu Feb 8 13:59:35 2018 -0700
+
+    finished up the rest of sprint1, perfected all form validations, created users with signup, authenticated where necessary, added logout view
+
+commit 48926a0b175286de733286c42e66daed0c7c300a
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Wed Feb 7 18:23:27 2018 -0700
+
+    updated field validations, added pages for signup and login, added logout py file
+
+commit e1546adaa91e922453d87763cf38aea4ae801014
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Tue Feb 6 22:07:57 2018 -0700
+
+    updated css, tried to make custom form validations work better
+
+commit e066efc4585f8e8c4a089f368bd65f51c62ab00f
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Tue Feb 6 14:14:11 2018 -0700
+
+    form validations added
+
+commit cfa1f7e9b5a0abdcae5b5ff03ae0256bc468d155
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Tue Feb 6 12:46:52 2018 -0700
+
+    added formlib
+
+commit c59df8e9924267c064a51d3ffdaeec721cc7f5e3
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Mon Feb 5 22:55:11 2018 -0700
+
+    followed along w/ video to make sure I got my forms right. also added css to make forms look nicer and updated a few other design aspects of webste
+
+commit be20c6f0f59925f31e0c742ad11c50ab91cfbc9d
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Mon Feb 5 13:45:28 2018 -0700
+
+    created formtest py and html, tried to get forms working
+
+commit 7ddd2766c154764a1074d9ddb10dc26187454354
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Thu Feb 1 14:24:53 2018 -0700
+
+    finished unit testing - added user permission and d group tests
+
+commit 04f714368c97d5c90a83a050948a34c5f0e9a6b6
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Wed Jan 31 15:29:31 2018 -0700
+
+    updated test.py and created fixtures file
+
+commit a31974c090b523e24c11916dc1c2efa6a9077031
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Wed Jan 31 14:09:53 2018 -0700
+
+    More css updates to make each page look more uniform and pretty
+
+commit 8f33a62fbe7d9f1f29c9e68619da98db31924387
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Wed Jan 31 14:01:34 2018 -0700
+
+    made LOTS of design changes to get Bootstrap 4 to work
+
+commit 6f4961cf9d170239717647ffce378d8127f9e491
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Tue Jan 30 23:08:29 2018 -0700
+
+    upgraded to Bstrap 4 and made lots of tweaks to CSS and HTML to try to fix things and get my website back to normal. Aparently there are quite a few changes to Bootrstrap 4
+
+commit a7629318bf10b4929447f56d14497dcf8007219c
+Merge: e0a2539 8a1ee50
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Tue Jan 30 21:55:42 2018 -0700
+
+    Merge branch 'unittest'
+
+commit e0a25390f26d7cb01756ac15fe1a672ef042d855
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Tue Jan 30 21:54:53 2018 -0700
+
+    accidentally changing master...
+
+commit bdf396cd3adce8d4cc64e2e6795010b4a15bea69
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Tue Jan 30 15:33:33 2018 -0700
+
+    get_purchases added to models.py andsetup added to test
+
+commit 8a1ee5022c3740df1860f1bd734fd3da45fe2b8c
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Tue Jan 30 13:34:11 2018 -0700
+
+    added two tests to tests.py
+
+commit 5071f3131709c928d78e4d3c3d16800d9cb2e25e
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Tue Jan 30 12:39:29 2018 -0700
+
+    added get_purchases method to usermodel, closing usermodel branch
+
+commit 3b23513113cced1f393f3c8c5748ca0ced64c1ff
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Mon Jan 29 13:47:23 2018 -0700
+
+    Added user model
+
+commit 12ef23d799b18654693d351b6db2a5890eeba8f2
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Sun Jan 28 18:41:01 2018 -0700
+
+    messing around with the Question model
+
+commit e686f510456032522aeca5ea2ba89200892dbe8c
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Sun Jan 28 17:25:45 2018 -0700
+
+    testing git
+
+commit 9442004d7d168c36c929c2831f41cc49d2b9cd02
+Author: Riley Wells <rileymorganwells@gmail.com>
+Date:   Sun Jan 28 17:17:49 2018 -0700
+
+    updated base.htm (added space only in html) to test git

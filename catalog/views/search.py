@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import permission_required
 from catalog import models as cmod
 from django.http import JsonResponse
 
-@permission_required('') ### WHAT DO I PUT IN HERE???
+@permission_required('product.can_edit')
 @view_function
 def process_request(request, category=None, product=None, max_price=None, page=None):
     # create json dictionary

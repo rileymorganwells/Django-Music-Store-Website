@@ -3,6 +3,7 @@ from polymorphic.models import PolymorphicModel
 from django.conf import settings
 from django.db import transaction
 from django.http import HttpResponseRedirect
+import datetime
 import win32api
 import stripe
 from decimal import *
@@ -206,12 +207,25 @@ class Order(models.Model):
                 source=stripe_charge_token,
                 )
             # finalize (or create) one or more payment objects
-                # payment = Payment(order=self)
-            # set order status to sold and save the order
-                # self.status = sold
-                # self.save()
+            payment = Payment(order=self, amount=self.total_price, payment_date=datetime.date.today())
             # update product quantities for BulkProducts
-            # update status for IndividualProducts
+            for item in self.active_items():
+                myitem = self.get_item(item)
+                prod = Product.objects.get(id=myitem.product.id)
+                if prod.TITLE == 'Bulk Product':
+                    prod.quantity -= myitem.quantity
+                else:
+                    prod.status = 'I'
+                prod.save()
+            # set order status to sold and save the order
+            self.order_date = datetime.date.today()
+            self.status = 'sold'
+            self.save()
+            # make new cart
+            cart = Order(status='cart', user=self.user)
+            cart.save()
+            tax = OrderItem(order=cart, product=Product.objects.get(name="Tax"), quantity=1)
+            tax.save()
 
 
 class OrderItem(PolymorphicModel):

@@ -4,7 +4,6 @@ from django.conf import settings
 from django.db import transaction
 from django.http import HttpResponseRedirect
 import datetime
-import win32api
 import stripe
 from decimal import *
 
@@ -194,10 +193,10 @@ class Order(models.Model):
                 qtyavail = prod.get_quantity()
                 quantity = myitem.quantity
                 if quantity > qtyavail:
-                    if qtyavail == 0:
-                        win32api.MessageBox(0, 'Sorry, ' + prod.name + ' is currently out of stock. Please remove from cart.', 'Error with Cart')
-                    else:
-                        win32api.MessageBox(0, 'Sorry, there are only ' + str(qtyavail) + prod.name + ' products available! Please remove excess from cart.', 'Error with Cart')
+                    # if qtyavail == 0:
+                    #     win32api.MessageBox(0, 'Sorry, ' + prod.name + ' is currently out of stock. Please remove from cart.', 'Error with Cart')
+                    # else:
+                    #     win32api.MessageBox(0, 'Sorry, there are only ' + str(qtyavail) + prod.name + ' products available! Please remove excess from cart.', 'Error with Cart')
                     return HttpResponseRedirect('/catalog/cart/')
             # contact stripe and run the payment (using the stripe_charge_token)
             charge = stripe.Charge.create(

@@ -37,6 +37,7 @@
     python-dateutil = "*"
     pytz = "*"
     PyYAML = "*"
+    pywin32 = "*"
     requests = "*"
     semantic-version = "*"
     six = "*"

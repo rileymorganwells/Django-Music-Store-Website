@@ -27,7 +27,7 @@ SECRET_KEY = 'jlcq!ag58zo)pe9r%zz7#189c0w*1$lm-&_avrb9*!h-j(@6@l'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -66,6 +66,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'catalog.history.LastFiveMiddleware',
     'account.basicauth.BasicAuthMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'FOMO.urls'

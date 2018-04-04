@@ -1,0 +1,1 @@
+web: gunicorn my-fomo-app.wsgi --log-file -
